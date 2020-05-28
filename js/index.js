@@ -36,3 +36,55 @@ function test(){
   $(".navbar-toggler").click(function(){
     setTimeout(function(){ test(); });
   });
+
+  $(function() {
+
+    if(Modernizr.history){
+
+    var newHash      = "",
+        $mainContent = $("#main-content"),
+        $pageWrap    = $("#page-wrap"),
+        baseHeight   = 0;
+        
+    $pageWrap.height($pageWrap.height());
+    baseHeight = $pageWrap.height() - $mainContent.height();
+    
+    $("nav").delegate("a", "click", function() {
+        _link = encodeURIComponent(($(this).attr("href")).trim());
+        history.pushState(null, null, _link);
+        loadContent(_link);
+        return false;
+    });
+
+    function loadContent(href) {
+
+  $mainContent
+    .find("#guts")
+    .fadeOut(200, function() { // fade out the content of the current page
+      $mainContent
+        .hide()
+        .load(href + " #guts", function() { // load the contents of whatever href is
+          $mainContent.fadeIn(200, function() {
+            $pageWrap.animate({
+              height: baseHeight + $mainContent.height() + "px"
+            });
+         });
+
+    });
+
+  });
+
+}
+    
+    $(window).bind('popstate', function(){
+      _link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
+      loadContent(_link);
+      $('#navbarSupportedContent ul li').removeClass("active");
+      $('#navbarSupportedContent ul li a[href*="'+decodeURI(_link)+'"]').parent().addClass("active")
+      test()
+    });
+
+} // otherwise, history is not supported, so nothing fancy here.
+
+    
+});
