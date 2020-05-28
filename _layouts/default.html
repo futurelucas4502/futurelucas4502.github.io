@@ -27,14 +27,13 @@
       <url_dependant id="url_dependant">
         <script>
           if(location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index"){
-            var url_dependant = document.getElementById("url_dependant")
-            document.url_dependant.appendChild('<a href="https://github.com/futurelucas4502/management-console" class="btn">View on GitHub</a>');
+            document.getElementById("url_dependant").innerHTML += '<a href="https://github.com/futurelucas4502/management-console" class="btn">View on GitHub</a>'
           }
         </script>
       {% if site.show_downloads %}
       <script>
       if(location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index"){
-        document.url_dependant.appendChild('<a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a><a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>');
+        document.getElementById("url_dependant").innerHTML += '<a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a><a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>'
       }
       </script>
       {% endif %}
