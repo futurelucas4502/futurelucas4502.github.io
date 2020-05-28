@@ -31,7 +31,7 @@
           }
           if({{ site.show_downloads }}) if(location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index" || location.href == "https://futurelucas4502.github.io/docs/management-console/index.html"){
               document.getElementById("url_dependant").innerHTML += '<a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a><a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>'
-            }
+            } // If your IDE says it's wrong ignore the error its just because its not correct in javascript but the site builder e.g. jekyll will auto replace it with the correct value e.g. site.show_downloads will be replaced with true or false depending on whats specified in the _config.yml file
         </script>
     </url_dependant>
     </header>
