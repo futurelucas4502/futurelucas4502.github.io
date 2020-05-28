@@ -26,7 +26,7 @@ function test(){
         "width": activeWidthNewAnimWidth + "px"
       });
     });
-  }
+  };
   $(document).ready(function(){
     setTimeout(function(){ test(); }, 300);
   });
@@ -74,7 +74,7 @@ function test(){
 
   });
 
-}
+};
     
     $(window).bind('popstate', function(){
       _link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
@@ -84,7 +84,7 @@ function test(){
       test()
     });
 
-} // otherwise, history is not supported, so nothing fancy here.
+}; // otherwise, history is not supported, so nothing fancy here.
 
     
 });
