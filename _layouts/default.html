@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
   <head>
+
+    <script>
+    console.log("Site title: {{ site.title }}")
+    console.log("Site . URL: {{ site.url }}")
+    console.log("Site _ URL: {{ site_url }}")
+    console.log("Site URL js: "+location.href)
+    </script>
+
     {% if site.google_analytics %}
       <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
       <script>
@@ -26,10 +34,10 @@
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       {% if location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index" %}
         <a href="https://github.com/futurelucas4502/management-console" class="btn">View on GitHub</a>
-        {% if site.show_downloads %}
-          <a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a>
-          <a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>
-        {% endif %}
+      {% endif %}
+      {% if location.href == "https://futurelucas4502.github.io/docs/management-console/" && site.show_downloads == true || location.href == "https://futurelucas4502.github.io/docs/management-console" && site.show_downloads == true || location.href == "https://futurelucas4502.github.io/docs/management-console/index" && site.show_downloads == true %}
+        <a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a>
+        <a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>
       {% endif %}
     </header>
 
