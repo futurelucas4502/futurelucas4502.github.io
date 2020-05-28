@@ -16,15 +16,12 @@ function test(){
 
   $(document).ready(function(){
     setTimeout(function(){ test(); }, 300);
-    console.log("Doc Ready")
   });
   $(window).on('resize', function(){
     setTimeout(function(){ test(); }, 500);
-    console.log("Resize")
   });
   $(".navbar-toggler").click(function(){
     setTimeout(function(){ test(); });
-    console.log("Nav Toggler")
   });
 
   $(function() {
@@ -43,7 +40,6 @@ function test(){
         _link = encodeURIComponent(($(this).attr("href")).trim());
         history.pushState(null, null, _link);
         loadContent(_link);
-        console.log("Clicked")
         return false;
     });
 
@@ -86,7 +82,6 @@ function test(){
     $(window).bind('popstate', function(){
       _link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
       loadContent(_link);
-      console.log("Pop State")
     });
 
 }; // otherwise, history is not supported, so nothing fancy here.  
