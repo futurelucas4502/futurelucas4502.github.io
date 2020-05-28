@@ -24,11 +24,12 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      <url_dependant>
+      <url_dependant id="url_dependant">
         <script>
-          // if(location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index"){
+          if(location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index"){
+            var url_dependant = document.getElementById("url_dependant")
             document.url_dependant.appendChild('<a href="https://github.com/futurelucas4502/management-console" class="btn">View on GitHub</a>');
-          // }
+          }
         </script>
       {% if site.show_downloads %}
       <script>
