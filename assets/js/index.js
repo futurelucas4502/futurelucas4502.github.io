@@ -1,4 +1,5 @@
 // Start Navigation
+var title
 function test(){
     var tabsNewAnim = $('#navbarSupportedContent');
     var activeItemNewAnim = tabsNewAnim.find('.active');
@@ -54,9 +55,11 @@ function test(){
             $pageWrap.animate({
               height: baseHeight + $mainContent.height() + "px"
             });
-            setTimeout(function(){
+            setTimeout(async function(){
               $('#navbarSupportedContent ul li').removeClass("active");
               $('#navbarSupportedContent ul li a[href*="'+decodeURI(href)+'"]').parent().addClass("active")
+              await $.get(location.href, function( my_var ) { title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) //title contains the title of page loaded
+              document.title = title
               var thiss = document.getElementsByClassName("active")[0]
               var activeWidthNewAnimHeight = $(thiss).innerHeight();
               var activeWidthNewAnimWidth = $(thiss).innerWidth();
@@ -83,5 +86,6 @@ function test(){
 
 }; // otherwise, history is not supported, so nothing fancy here.  
 });
+
 
 // End Navigation
