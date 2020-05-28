@@ -1,0 +1,4 @@
+theme: jekyll-theme-cayman
+description: A management console made with Electron.JS for my Computer Science A-Level
+site_favicon: favicon.ico
+show_downloads: false
