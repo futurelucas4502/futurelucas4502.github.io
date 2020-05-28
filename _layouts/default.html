@@ -32,13 +32,18 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      <url_dependant>
       {% if location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index" %}
         <a href="https://github.com/futurelucas4502/management-console" class="btn">View on GitHub</a>
       {% endif %}
-      {% if location.href == "https://futurelucas4502.github.io/docs/management-console/" && site.show_downloads == true || location.href == "https://futurelucas4502.github.io/docs/management-console" && site.show_downloads == true || location.href == "https://futurelucas4502.github.io/docs/management-console/index" && site.show_downloads == true %}
-        <a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a>
-        <a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>
+      {% if site.show_downloads %}
+      <script>
+      if(location.href == "https://futurelucas4502.github.io/docs/management-console/" || location.href == "https://futurelucas4502.github.io/docs/management-console" || location.href == "https://futurelucas4502.github.io/docs/management-console/index"){
+        document.url_dependant.appendChild('<a href="https://github.com/futurelucas4502/management-console/zipball/master" class="btn">Download .zip</a><a href="https://github.com/futurelucas4502/management-console/tarball/master" class="btn">Download .tar.gz</a>');
+      }
+      </script>
       {% endif %}
+    </url_dependant>
     </header>
 
     <main id="content" class="main-content" role="main">
