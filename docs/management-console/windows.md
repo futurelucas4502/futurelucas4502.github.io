@@ -1,3 +1,7 @@
+---
+description: A management console made with Electron.JS for my Computer Science A-Level
+---
+
 # The City of Truro Mariners - Managment Console for Windows
 
 Congratulations your on windows the most popular OS taking up a whopping 87.8% of the desktop market share therefore this application has been developed on windows for windows and is more stable than on other OS's like Linux and macOS.

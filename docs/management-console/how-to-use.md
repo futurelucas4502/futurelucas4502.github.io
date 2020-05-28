@@ -1,3 +1,7 @@
+---
+description: A management console made with Electron.JS for my Computer Science A-Level
+---
+
 # How to use The City of Truro Mariners - Managment Console
 
 ## How to request accesss:

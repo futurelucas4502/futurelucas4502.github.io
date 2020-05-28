@@ -1,3 +1,7 @@
+---
+description: A management console made with Electron.JS for my Computer Science A-Level
+---
+
 # The City of Truro Mariners - Managment Console for unsupported OS's
 
 So you want to use this application but your OS isn't supported well as long as your on a computer that can run nodejs and electronjs your in luck!

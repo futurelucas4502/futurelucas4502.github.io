@@ -1,3 +1,7 @@
+---
+description: A management console made with Electron.JS for my Computer Science A-Level
+---
+
 # The City of Truro Mariners - Managment Console for Linux
 
 ## How to download the program:
