@@ -1,5 +1,15 @@
 // Start Navigation
-function init(){ // Initial animation of hori-selector
+var mobilehref
+function init(href){ // Initial animation of hori-selector
+  if(href != undefined){
+    $('#navbarSupportedContent ul li').removeClass("active");
+    $('#navbarSupportedContent ul li a[href*="'+decodeURI(href)+'"]').parent().addClass("active")
+  }
+  if(mobilehref != undefined){
+    $('#navbarSupportedContent ul li').removeClass("active");
+    $('#navbarSupportedContent ul li a[href*="'+decodeURI(mobilehref)+'"]').parent().addClass("active")
+    mobilehref = undefined
+  }
     var tabsNewAnim = $('#navbarSupportedContent');
     var activeItemNewAnim = tabsNewAnim.find('.active');
     var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
@@ -21,7 +31,8 @@ function init(){ // Initial animation of hori-selector
     setTimeout(function(){ init(); }, 500); // Runs init when page resized to ensure its in the correct place
   });
   $(".navbar-toggler").click(function(){
-    setTimeout(function(){ init(); }); // Runs animation when navbar toggler pressed to add mobile support
+      console.log("toggler clicked")
+      setTimeout(function(){ init(); }, 300);
   });
 
   $(function() {
@@ -37,7 +48,7 @@ function init(){ // Initial animation of hori-selector
     
     $("nav").delegate("a", "click", function() { // The code that executes when link pressed
       if (!(getComputedStyle(document.getElementById("toggler"), null).display == "none")){
-        document.getElementById("toggler").click() // Closes nav toggler when a link is pressed in mobile view
+        $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
         _link = encodeURIComponent(($(this).attr("href")).trim()); // Get the href of the link pressed and decode it
         history.pushState(null, null, _link); // Add link to browser history
@@ -57,34 +68,25 @@ function init(){ // Initial animation of hori-selector
             $pageWrap.animate({
               height: baseHeight + $mainContent.height() + "px" // Smooth animate the page extending as the data fades in
             });
-            setTimeout(async function(){ // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
-              // The following animates moving the hori selector and setting the active link
-              $('#navbarSupportedContent ul li').removeClass("active");
-              $('#navbarSupportedContent ul li a[href*="'+decodeURI(href)+'"]').parent().addClass("active")
-              await $.get(location.href, function( my_var ) { document.title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) // Fetches title of page loaded and sets it
-              var thiss = document.getElementsByClassName("active")[0]
-              var activeWidthNewAnimHeight = $(thiss).innerHeight();
-              var activeWidthNewAnimWidth = $(thiss).innerWidth();
-              var itemPosNewAnimTop = $(thiss).position();
-              var itemPosNewAnimLeft = $(thiss).position();
-              $(".hori-selector").css({
-                "top":itemPosNewAnimTop.top + "px", 
-                "left":itemPosNewAnimLeft.left + "px",
-                "height": activeWidthNewAnimHeight + "px",
-                "width": activeWidthNewAnimWidth + "px"
-              });
-            }, 500);
+             // The following animates moving the hori selector and setting the active link
+             $.get(location.href, function( my_var ) { document.title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) // Fetches title of page loaded and sets it
+            if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
+              setTimeout(function(){init(href)}, 500); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
+            } else {
+              mobilehref = href
+            }
          });
-
     });
-
   });
 };
     
     $(window).bind('popstate', function(){ // Run on forward or back pressed
       _link = location.pathname.replace(/^.*[\\\/]/, ''); // Get filename only of the history link
-      if(_link == ""){
+      if(_link == "" || _link == "index"){
         _link = "index.html" // Adds support for going back to just https://futurelucas4502.github.io/
+      }
+      if (!(getComputedStyle(document.getElementById("toggler"), null).display == "none")){
+        $('.navbar-collapse').collapse('hide'); // Closes nav toggler before loading past or future content
       }
       loadContent(_link); // Runs the load content function using the history href/_link
     });
