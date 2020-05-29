@@ -1,2 +1,2 @@
 # futurelucas4502.github.io
-My work
+Open-Source website to show off my work and skills as a developer

@@ -123,7 +123,10 @@ $(document).ready(function () {
         <div class="card-body">
           <h5 class="card-title">${response[i]["name"]}</h5>
           <p class="card-text">${response[i]["description"]}</p>
-          <a href="#" class="btn btn-primary">View</a>
+          <div class="vertical">
+            <a style="display: block!important;margin-bottom:10px" href="#" class="btn btn-primary">View</a>
+            <a style="display: block!important;" href="${response[i]["html_url"]}" class="btn btn-primary">View on GitHub</a>
+          </div>
         </div>
       </div>
     </div>
