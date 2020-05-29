@@ -57,7 +57,7 @@ function init(href){ // Initial animation of hori-selector
     });
 
     function loadContent(href) {
-      if(href == "index.html")indexReady()
+      if(href == "index.html")setTimeout(function(){indexReady()}, 500); // Set timeout instead of loading immediatly to allow for DOM delays
 
   $mainContent
     .find("#guts")
