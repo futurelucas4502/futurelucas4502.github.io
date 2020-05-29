@@ -104,3 +104,33 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
 });
 
 // End Navigation
+
+// Start Home Cards Loading
+
+$(document).ready(function () {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", "https://api.github.com/users/futurelucas4502/repos", false); // false for synchronous request
+  xmlHttp.send( null );
+  var response = JSON.parse(xmlHttp.responseText)
+  document.getElementById("loading").style.display = "none"
+  for (let i = 0; i < response.length; i++) {
+    response[i]["name"] = response[i]["name"].replace(/_/g, ' ');
+    response[i]["name"] = response[i]["name"].replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+    document.getElementById("cards").innerHTML += `
+    <div class="col-sm d-flex justify-content-center">
+      <div class="card" style="width: 18rem;margin-top:20px">
+        <img src="./assets/images/placeholder.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${response[i]["name"]}</h5>
+          <p class="card-text">${response[i]["description"]}</p>
+          <a href="#" class="btn btn-primary">View</a>
+        </div>
+      </div>
+    </div>
+    `
+  }
+})
+
+// End Home Cards Loading
+
+
