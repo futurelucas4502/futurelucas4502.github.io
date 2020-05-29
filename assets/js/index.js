@@ -116,14 +116,14 @@ async function indexReady() {
   response = await response.json();
   document.getElementById("loading").style.display = "none"
   for (let i = 0; i < response.length; i++) {
-    response[i]["name"] = response[i]["name"].replace(/_/g, ' ');
-    response[i]["name"] = response[i]["name"].replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+    var name = response[i]["name"].replace(/_/g, ' ');
+    name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     document.getElementById("cards").innerHTML += `
     <div class="col-sm d-flex justify-content-center">
       <div class="card" style="width: 18rem;margin-top:20px">
-        <img src="./assets/images/placeholder.png" class="card-img-top" alt="...">
+        <img style="height:180px" id="${response[i]["name"]}" class="card-img-top">
         <div class="card-body">
-          <h5 class="card-title">${response[i]["name"]}</h5>
+          <h5 class="card-title">${name}</h5>
           <p class="card-text">${response[i]["description"]}</p>
           <div class="vertical">
             <a style="display: block!important;margin-bottom:10px" href="#" class="btn btn-primary">View</a>
@@ -133,8 +133,7 @@ async function indexReady() {
       </div>
     </div>
     `
+    document.getElementById(response[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png)`
   }
 }
 // End Home Cards Loading
-
-
