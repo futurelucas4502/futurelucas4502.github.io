@@ -57,6 +57,7 @@ function init(href){ // Initial animation of hori-selector
     });
 
     function loadContent(href) {
+      if(href == "index.html")indexReady()
 
   $mainContent
     .find("#guts")
@@ -106,12 +107,13 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
 // End Navigation
 
 // Start Home Cards Loading
-
 $(document).ready(function () {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", "https://api.github.com/users/futurelucas4502/repos", false); // false for synchronous request
-  xmlHttp.send( null );
-  var response = JSON.parse(xmlHttp.responseText)
+  if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location == "https://futurelucas4502.github.io/index" || document.location == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location == "http://localhost/futurelucas4502.github.io/index" || document.location == "http://localhost/futurelucas4502.github.io/")indexReady()
+})
+
+async function indexReady() {
+  let response = await fetch("https://api.github.com/users/futurelucas4502/repos");
+  response = await response.json();
   document.getElementById("loading").style.display = "none"
   for (let i = 0; i < response.length; i++) {
     response[i]["name"] = response[i]["name"].replace(/_/g, ' ');
@@ -132,8 +134,7 @@ $(document).ready(function () {
     </div>
     `
   }
-})
-
+}
 // End Home Cards Loading
 
 
