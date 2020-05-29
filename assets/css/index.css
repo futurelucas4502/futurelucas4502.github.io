@@ -143,4 +143,14 @@
     height:40px;
 	width:40px;
 }
+
+.sticky-top{
+	position: fixed;
+	top: 0;
+	width:100%
+}
+
+#main-content{
+	padding-top: 60px;
+}
 /* End Navigation Styling */
