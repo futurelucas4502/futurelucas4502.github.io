@@ -127,7 +127,7 @@ async function indexReady() {
           <p class="card-text">${response[i]["description"]}</p>
           <div class="vertical">
             <a style="display: block!important;margin-bottom:10px" href="#" class="btn btn-primary">View</a>
-            <a style="display: block!important;" href="${response[i]["html_url"]}" class="btn btn-primary">View on GitHub</a>
+            <a style="display: block!important;" href="${response[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
           </div>
         </div>
       </div>
