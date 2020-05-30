@@ -25,14 +25,14 @@ function init(href){ // Initial animation of hori-selector
   };
 
   $(document).ready(function(){
-    setTimeout(function(){ init(); }, 300); // Runs init when page first loaded
+    setTimeout(function(){ init(); }, 500); // Runs init when page first loaded
   });
   $(window).on('resize', function(){
     setTimeout(function(){ init(); }, 500); // Runs init when page resized to ensure its in the correct place
   });
   $(".navbar-toggler").click(function(){
       console.log("toggler clicked")
-      setTimeout(function(){ init(); }, 300);
+      setTimeout(function(){ init(); }, 200);
   });
 
   $(function() {
@@ -70,7 +70,7 @@ function init(href){ // Initial animation of hori-selector
               height: baseHeight + $mainContent.height() + "px" // Smooth animate the page extending as the data fades in
             });
              // The following animates moving the hori selector and setting the active link
-             $.get(location.href, function( my_var ) { document.title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) // Fetches title of page loaded and sets it
+            $.get(location.href, function( my_var ) { document.title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) // Fetches title of page loaded and sets it
             if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
               setTimeout(function(){init(href)}, 500); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
             } else {
@@ -108,11 +108,15 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
 
 // Start Home Cards Loading
 $(document).ready(function () {
-  if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location == "https://futurelucas4502.github.io/index" || document.location == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location == "http://localhost/futurelucas4502.github.io/index" || document.location == "http://localhost/futurelucas4502.github.io/")indexReady()
+  if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location == "https://futurelucas4502.github.io/index" || document.location == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location == "http://localhost/futurelucas4502.github.io/index" || document.location == "http://localhost/futurelucas4502.github.io/"){
+    indexReady()
+  } else {
+    
+  }
 })
-
+let response
 async function indexReady() {
-  let response = await fetch("https://api.github.com/users/futurelucas4502/repos");
+  response = await fetch("https://api.github.com/users/futurelucas4502/repos");
   response = await response.json();
   document.getElementById("loading").style.display = "none"
   for (let i = 0; i < response.length; i++) {
@@ -133,7 +137,7 @@ async function indexReady() {
       </div>
     </div>
     `
-    document.getElementById(response[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png)`
+    document.getElementById(response[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
   }
 }
 // End Home Cards Loading
