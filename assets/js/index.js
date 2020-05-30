@@ -3,11 +3,19 @@ var mobilehref
 function init(href){ // Initial animation of hori-selector
   if(href != undefined){
     $('#navbarSupportedContent ul li').removeClass("active");
-    $('#navbarSupportedContent ul li a[href*="'+decodeURI(href)+'"]').parent().addClass("active")
+    if($('#navbarSupportedContent ul li a[href="'+decodeURI(href)+'"]').parent()[0].id == "navDropdownInner"){
+      $('#navbarSupportedContent ul li a[href="'+decodeURI(href)+'"]').parent().parent().addClass("active")
+    } else {
+      $('#navbarSupportedContent ul li a[href="'+decodeURI(href)+'"]').parent().addClass("active")
+    }
   }
   if(mobilehref != undefined){
     $('#navbarSupportedContent ul li').removeClass("active");
-    $('#navbarSupportedContent ul li a[href*="'+decodeURI(mobilehref)+'"]').parent().addClass("active")
+    if($('#navbarSupportedContent ul li a[href="'+decodeURI(mobilehref)+'"]').parent()[0].id == "navDropdownInner"){
+      $('#navbarSupportedContent ul li a[href="'+decodeURI(mobilehref)+'"]').parent().parent().addClass("active")
+    } else {
+      $('#navbarSupportedContent ul li a[href="'+decodeURI(mobilehref)+'"]').parent().addClass("active")
+    }
     mobilehref = undefined
   }
     var tabsNewAnim = $('#navbarSupportedContent');
@@ -31,6 +39,11 @@ function init(href){ // Initial animation of hori-selector
       console.log("toggler clicked")
       setTimeout(function(){ init(); }, 200);
   });
+  window.matchMedia("(max-width: 991px)").addListener(closeNavMobile) // Attach listener function on state changes
+
+  function closeNavMobile(){
+    $('.navbar-collapse').collapse('hide');
+  }
 
   $(function() {
 
@@ -48,12 +61,11 @@ function init(href){ // Initial animation of hori-selector
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
       try {
-        _link = encodeURIComponent(($(this).attr("href")).trim()); // Get the href of the link pressed and decode it
+        _link = ($(this).attr("href")).trim(); // Get the href of the link pressed and decode it
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
         return false; // Cancel redirection to prevent page loading like normal
       } catch {
-        console.log("Dropdown pressed - I know this is a bad practise try catch ill fix it when the dropdown is fixed.")
       }
     });
 
@@ -83,9 +95,8 @@ function init(href){ // Initial animation of hori-selector
 };
     
     $(window).bind('popstate', function(){ // Run on forward or back pressed
-      console.log("="+location.href.split("=")[1])
-      _link = location.pathname.replace(/^.*[\\\/]/, ''); // Get filename only of the history link
-      console.log(_link)
+      _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
+      if(location.href.split("?")[1] != undefined)_link+=("?"+location.href.split("?")[1]); // Add the page request
       if(_link == "" || _link == "index"){
         _link = "index.html" // Adds support for going back to just https://futurelucas4502.github.io/
       }
@@ -118,13 +129,20 @@ $(document).ready(async function () {
   } else {
     otherReady("="+location.href.split("=")[1])
   }
-  for (let i = 0; i < response.length; i++) {
+  for (let i = 0; i < response.length; i++) { // Add links to dropdown
     var name = response[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-    console.log(name)
     if(name == "Management Console" || name == "Management Console Mobile"){
     }else {
       document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${response[i]["name"]}" class="dropdown-item text-dark">${name}</a>`
+    }
+  }
+  if(location.href.split("?")[1] != undefined){
+    $('#navbarSupportedContent ul li').removeClass("active");
+    if($('#navbarSupportedContent ul li a[href="'+decodeURI("index.html?"+location.href.split("?")[1])+'"]').parent()[0].id == "navDropdownInner"){
+      $('#navbarSupportedContent ul li a[href="'+decodeURI("index.html?"+location.href.split("?")[1])+'"]').parent().parent().addClass("active")
+    } else {
+      $('#navbarSupportedContent ul li a[href="'+decodeURI("index.html?"+location.href.split("?")[1])+'"]').parent().addClass("active")
     }
   }
   setTimeout(function(){ init(); }, 700); // Runs init when page first loaded

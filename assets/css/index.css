@@ -104,6 +104,7 @@
 	.hori-selector .left,
 	.hori-selector .right{
 		right: 10px;
+		overflow: hidden;
 	}
 	.hori-selector .left{
 		top: -25px;
