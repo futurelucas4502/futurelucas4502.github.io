@@ -1,5 +1,11 @@
 // Start Navigation
 var mobilehref
+var closeNavMobile = window.matchMedia("(max-width: 991px)")
+closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on state changes
+
+function closeNavMobileFunc(){
+    $('.navbar-collapse').collapse('hide');
+}
 function init(href){ // Initial animation of hori-selector
   if(href != undefined){
     $('#navbarSupportedContent ul li').removeClass("active");
@@ -30,6 +36,7 @@ function init(href){ // Initial animation of hori-selector
       "height": activeWidthNewAnimHeight + "px",
       "width": activeWidthNewAnimWidth + "px"
     });
+    setTimeout(function(){ mobileNavRightCut(); }, 275)
   };
 
   $(window).on('resize', function(){
@@ -39,11 +46,6 @@ function init(href){ // Initial animation of hori-selector
       console.log("toggler clicked")
       setTimeout(function(){ init(); }, 200);
   });
-  window.matchMedia("(max-width: 991px)").addListener(closeNavMobile) // Attach listener function on state changes
-
-  function closeNavMobile(){
-    $('.navbar-collapse').collapse('hide');
-  }
 
   $(function() {
 
@@ -117,6 +119,14 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
       }
   });
 });
+
+function mobileNavRightCut(){
+  if($('#navbarSupportedContent').find('.active')[0].children[0].id == "navbarDropdown" && closeNavMobile.matches){
+    document.getElementById("right").style.display = "none"
+  } else{
+    document.getElementById("right").style.display = "block"
+  }
+}
 
 // End Navigation
 
