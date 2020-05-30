@@ -25,7 +25,7 @@ function init(href){ // Initial animation of hori-selector
   };
 
   $(document).ready(function(){
-    setTimeout(function(){ init(); }, 500); // Runs init when page first loaded
+    setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
   });
   $(window).on('resize', function(){
     setTimeout(function(){ init(); }, 500); // Runs init when page resized to ensure its in the correct place
@@ -72,7 +72,7 @@ function init(href){ // Initial animation of hori-selector
              // The following animates moving the hori selector and setting the active link
             $.get(location.href, function( my_var ) { document.title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) // Fetches title of page loaded and sets it
             if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
-              setTimeout(function(){init(href)}, 500); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
+              setTimeout(function(){init(href)}, 700); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
             } else {
               mobilehref = href
             }
