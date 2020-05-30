@@ -50,10 +50,14 @@ function init(href){ // Initial animation of hori-selector
       if (!(getComputedStyle(document.getElementById("toggler"), null).display == "none")){
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
+      try {
         _link = encodeURIComponent(($(this).attr("href")).trim()); // Get the href of the link pressed and decode it
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
         return false; // Cancel redirection to prevent page loading like normal
+      } catch {
+        console.log("Dropdown pressed - I know this is a bad practise try catch ill fix it when the dropdown is fixed.")
+      }
     });
 
     function loadContent(href) {
