@@ -59,7 +59,7 @@ function init(href){ // Initial animation of hori-selector
     baseHeight = $pageWrap.height() - $mainContent.height();
     
     $("nav").delegate("a", "click", function() { // The code that executes when link pressed
-      if (!(getComputedStyle(document.getElementById("toggler"), null).display == "none")){
+      if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown"){
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
       try {
