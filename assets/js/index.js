@@ -83,7 +83,7 @@ function init(href){ // Initial animation of hori-selector
 };
     
     $(window).bind('popstate', function(){ // Run on forward or back pressed
-      console.log("#"+location.href.split("#")[1])
+      console.log("="+location.href.split("=")[1])
       _link = location.pathname.replace(/^.*[\\\/]/, ''); // Get filename only of the history link
       console.log(_link)
       if(_link == "" || _link == "index"){
@@ -95,7 +95,7 @@ function init(href){ // Initial animation of hori-selector
       loadContent(_link); // Runs the load content function using the history href/_link
     });
 
-}; // else {History is not supported, so nothing fancy here.}
+} // else {History is not supported, so nothing fancy here.}
 });
 $(document).ready(function () { // Closes nav toggler if opened on mobile and you dont press on it
   $(document).click(function (event) {
@@ -116,7 +116,7 @@ $(document).ready(async function () {
   if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location == "https://futurelucas4502.github.io/index" || document.location == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location == "http://localhost/futurelucas4502.github.io/index" || document.location == "http://localhost/futurelucas4502.github.io/"){
     indexReady()
   } else {
-    otherReady("#"+location.href.split("#")[1])
+    otherReady("="+location.href.split("=")[1])
   }
   for (let i = 0; i < response.length; i++) {
     var name = response[i]["name"].replace(/_/g, ' ');
@@ -124,7 +124,7 @@ $(document).ready(async function () {
     console.log(name)
     if(name == "Management Console" || name == "Management Console Mobile"){
     }else {
-      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html#${response[i]["name"]}" class="dropdown-item text-dark">${name}</a>`
+      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${response[i]["name"]}" class="dropdown-item text-dark">${name}</a>`
     }
   }
   setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
@@ -145,7 +145,7 @@ async function indexReady() {
           <h5 class="card-title">${name}</h5>
           <p class="card-text">${response[i]["description"]}</p>
           <div class="vertical">
-            <a style="display: block!important;margin-bottom:10px" href="#" class="btn btn-primary">View</a>
+            <a style="display: block!important;margin-bottom:10px" href="index.html?page=${response[i]["name"]}" class="btn btn-primary">View</a>
             <a style="display: block!important;" href="${response[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
           </div>
         </div>
