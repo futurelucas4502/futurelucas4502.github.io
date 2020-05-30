@@ -58,7 +58,7 @@ function init(href){ // Initial animation of hori-selector
     $pageWrap.height($pageWrap.height());
     baseHeight = $pageWrap.height() - $mainContent.height();
     
-    $("nav").delegate("a", "click", function() { // The code that executes when link pressed
+    $("nav").delegate("a", "click", function(e) { // The code that executes when link pressed
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown"){
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
@@ -66,7 +66,7 @@ function init(href){ // Initial animation of hori-selector
         _link = ($(this).attr("href")).trim(); // Get the href of the link pressed and decode it
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
-        return false; // Cancel redirection to prevent page loading like normal
+        e.preventDefault(); // Cancel redirection to prevent page loading like normal
       } catch {
       }
     });
@@ -144,7 +144,7 @@ $(document).ready(async function () {
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     if(name == "Management Console" || name == "Management Console Mobile"){
     }else {
-      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${response[i]["name"]}" class="dropdown-item text-dark">${name}</a>`
+      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${response[i]["name"]}" class="dropdown-item">${name}</a>`
     }
   }
   if(location.href.split("?")[1] != undefined){
