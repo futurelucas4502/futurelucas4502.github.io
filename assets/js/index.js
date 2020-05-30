@@ -24,9 +24,6 @@ function init(href){ // Initial animation of hori-selector
     });
   };
 
-  $(document).ready(function(){
-    setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
-  });
   $(window).on('resize', function(){
     setTimeout(function(){ init(); }, 500); // Runs init when page resized to ensure its in the correct place
   });
@@ -86,7 +83,9 @@ function init(href){ // Initial animation of hori-selector
 };
     
     $(window).bind('popstate', function(){ // Run on forward or back pressed
+      console.log("#"+location.href.split("#")[1])
       _link = location.pathname.replace(/^.*[\\\/]/, ''); // Get filename only of the history link
+      console.log(_link)
       if(_link == "" || _link == "index"){
         _link = "index.html" // Adds support for going back to just https://futurelucas4502.github.io/
       }
@@ -111,12 +110,24 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
 // End Navigation
 
 // Start Home Cards Loading
-$(document).ready(function () {
+$(document).ready(async function () {
+  response = await fetch("https://api.github.com/users/futurelucas4502/repos");
+  response = await response.json();
   if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location == "https://futurelucas4502.github.io/index" || document.location == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location == "http://localhost/futurelucas4502.github.io/index" || document.location == "http://localhost/futurelucas4502.github.io/"){
     indexReady()
   } else {
-    
+    otherReady("#"+location.href.split("#")[1])
   }
+  for (let i = 0; i < response.length; i++) {
+    var name = response[i]["name"].replace(/_/g, ' ');
+    name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+    console.log(name)
+    if(name == "Management Console" || name == "Management Console Mobile"){
+    }else {
+      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html#${response[i]["name"]}" class="dropdown-item text-dark">${name}</a>`
+    }
+  }
+  setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
 })
 let response
 async function indexReady() {
@@ -145,3 +156,11 @@ async function indexReady() {
   }
 }
 // End Home Cards Loading
+
+// Start Other Pages Loading
+async function otherReady() {
+  response = await fetch("https://api.github.com/users/futurelucas4502/repos");
+  response = await response.json();
+  console.log(response)
+}
+// End Other Pages Loading
