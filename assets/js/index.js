@@ -1,8 +1,11 @@
 // Start Navigation
 var mobilehref
 var closeNavMobile = window.matchMedia("(max-width: 991px)")
-closeNavMobile.addListener($('.navbar-collapse').collapse('hide')) // Attach listener function on state changes
+closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on state changes
 
+function closeNavMobileFunc(){
+    $('.navbar-collapse').collapse('hide');
+}
 function init(href){ // Initial animation of hori-selector
   if(href != undefined){
     $('#navbarSupportedContent ul li').removeClass("active");
