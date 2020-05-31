@@ -70,7 +70,7 @@ function init(href){ // Initial animation of hori-selector
         otherReady(href.split("=")[1])
       }
       if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
-        setTimeout(function(){init(href)}, 200); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
+        setTimeout(function(){init(href)}, 400); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
       } else {
         mobilehref = href
       }
