@@ -132,10 +132,10 @@ $(document).ready(async function () {
   document.getElementsByTagName('head')[0].appendChild(link);
   document.getElementById("embelem").src = `https://github.com/${owner}.png`
   document.getElementById("owner").innerHTML = `${owner.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}'s Work`
-  fixedName1 = fixedName1.replace(/_/g, ' ');
-  fixedName1 = fixedName1.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-  fixedName2 = fixedName2.replace(/_/g, ' ');
-  fixedName2 = fixedName2.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+  var fixedName1Var = fixedName1.replace(/_/g, ' ');
+  fixedName1Var = fixedName1Var.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+  var fixedName2Var = fixedName2.replace(/_/g, ' ');
+  fixedName2Var = fixedName2Var.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
   if(useAPI){
     indexResponse = await fetch(`https://api.github.com/users/${owner}/repos`); // Using github API
     indexResponse = await indexResponse.json();
@@ -152,7 +152,8 @@ $(document).ready(async function () {
     for (let i = 0; i < doc.querySelectorAll("a[itemprop='name codeRepository']").length; i++) {
       let tempName = {
         "name" : doc.querySelectorAll("a[itemprop='name codeRepository']")[i].innerText.replace(/\s+/g, ''),
-        "description" : doc.querySelectorAll("p[itemprop='description']")[i].innerText
+        "description" : doc.querySelectorAll("p[itemprop='description']")[i].innerText,
+        "html_url" : `https://github.com/${owner}/${(doc.querySelectorAll("a[itemprop='name codeRepository']")[i].innerText).replace(/\s+/g, '')}`
       }
       indexResponse.push(tempName)
     }
@@ -166,11 +167,11 @@ $(document).ready(async function () {
   for (let i = 0; i < indexResponse.length; i++) { // Add links to dropdown
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-    if(name == fixedName1){
-      document.getElementById("fixedName1").innerHTML = `<i class="far ${fixedName1FA}"></i>${fixedName1}`
+    if(name == fixedName1Var){
+      document.getElementById("fixedName1").innerHTML = `<i class="far ${fixedName1FA}"></i>${fixedName1Var}`
       document.getElementById("fixedName1").href = `index.html?page=${indexResponse[i]["name"]}`
-    }else if(name == fixedName2){
-      document.getElementById("fixedName2").innerHTML = `<i class="far ${fixedName2FA}"></i>${fixedName2}`
+    }else if(name == fixedName2Var){
+      document.getElementById("fixedName2").innerHTML = `<i class="far ${fixedName2FA}"></i>${fixedName2Var}`
       document.getElementById("fixedName2").href = `index.html?page=${indexResponse[i]["name"]}`
     }else {
       document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${indexResponse[i]["name"]}" class="dropdown-item">${name}</a>`
