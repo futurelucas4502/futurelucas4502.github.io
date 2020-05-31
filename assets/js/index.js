@@ -233,7 +233,8 @@ async function indexReady() {
           <p class="card-text">${indexResponse[i]["description"]}</p>
           <div class="vertical">
             <a style="display: block!important;margin-bottom:10px" href="index.html?page=${indexResponse[i]["name"]}" class="btn btn-primary">View</a>
-            <a style="display: block!important;" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
+            <a style="display: block!important;margin-bottom:10px" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
+            <a style="display: block!important;" href="${site_url}/docs/${indexResponse[i]["name"]}" class="btn btn-primary">View Documentation</a>
           </div>
         </div>
       </div>
@@ -254,9 +255,8 @@ async function otherReady(name) {
               style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
               aria-hidden="true"></span>Loading...</h4>
       <div id="content">
-        <div class="row" id="cards"></div>
-      </div>
   </div>
+  <a style="display: block!important;" href="${site_url}/docs/${name}" class="btn btn-primary">View Documentation</a>
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and
       maintained by ${full_name} (${owner}).</h6>
 </div>`
