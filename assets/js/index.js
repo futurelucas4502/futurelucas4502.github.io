@@ -1,11 +1,8 @@
 // Start Navigation
 var mobilehref
 var closeNavMobile = window.matchMedia("(max-width: 991px)")
-closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on state changes
+closeNavMobile.addListener($('.navbar-collapse').collapse('hide')) // Attach listener function on state changes
 
-function closeNavMobileFunc(){
-    $('.navbar-collapse').collapse('hide');
-}
 function init(href){ // Initial animation of hori-selector
   if(href != undefined){
     $('#navbarSupportedContent ul li').removeClass("active");
@@ -24,17 +21,12 @@ function init(href){ // Initial animation of hori-selector
     }
     mobilehref = undefined
   }
-    var tabsNewAnim = $('#navbarSupportedContent');
-    var activeItemNewAnim = tabsNewAnim.find('.active');
-    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-    var itemPosNewAnimTop = activeItemNewAnim.position();
-    var itemPosNewAnimLeft = activeItemNewAnim.position();
+    var activeItemNewAnim = $('#navbarSupportedContent').find('.active');
     $(".hori-selector").css({
-      "top":itemPosNewAnimTop.top + "px", 
-      "left":itemPosNewAnimLeft.left + "px",
-      "height": activeWidthNewAnimHeight + "px",
-      "width": activeWidthNewAnimWidth + "px"
+      "top":activeItemNewAnim.position() + "px", 
+      "left":activeItemNewAnim.position()+ "px",
+      "height": activeItemNewAnim.innerHeight() + "px",
+      "width": activeItemNewAnim.innerWidth() + "px"
     });
     setTimeout(function(){ mobileNavRightCut(); }, 275)
   };
