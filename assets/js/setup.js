@@ -9,7 +9,7 @@
 // Finally you must set the variables below to what you want them as:
 var site_url = "https://futurelucas4502.github.io" // URL to index of your site
 var owner = "futurelucas4502" // Set to your github username
-var useAPI = true // Set whether to use the official API or my personal code. Note: The API has a rate limit of 60 requests an hour therefore its recommended to have this set as false.
+var useAPI = false // Set whether to use the official API or my personal code. Note: The API has a rate limit of 60 requests an hour therefore its recommended to have this set as false.
 var fixedName1 = "management_console" // Set to the first tab you want to be visible outside the dropdown
 var fixedName2 = "management_console_mobile" // Set to the second tab you want to be visible outside the dropdown
 var fixedName1FA = "fa-address-book" // Font awesome icon to use for the fixed name links
