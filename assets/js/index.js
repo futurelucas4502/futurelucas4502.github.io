@@ -27,6 +27,7 @@ closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on st
 function closeNavMobileFunc(){
     $('.navbar-collapse').collapse('hide');
 }
+
 function init(href){ // Initial animation of hori-selector
   if(href != undefined){
     $('#navbarSupportedContent ul li').removeClass("active");
@@ -51,21 +52,21 @@ function init(href){ // Initial animation of hori-selector
     var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
     var itemPosNewAnimTop = activeItemNewAnim.position();
     var itemPosNewAnimLeft = activeItemNewAnim.position();
-    if(closeNavMobile.matches){
+    if(closeNavMobile.matches){ // Mobile view
       $(".hori-selector").css({
         "top":itemPosNewAnimTop.top + "px", 
         "left":itemPosNewAnimLeft.left + "px",
         "height": activeWidthNewAnimHeight + "px",
         "width": activeWidthNewAnimWidth + "px"
       });
-    } else {
+      setTimeout(function(){ mobileNavRightCut(); }, 275)
+    } else { // Desktop view
       $(".hori-selector").css({
         "top":itemPosNewAnimTop.top + "px", 
         "left":itemPosNewAnimLeft.left + "px",
         "height": (activeWidthNewAnimHeight - 10) + "px",
         "width": activeWidthNewAnimWidth + "px"
       });
-      setTimeout(function(){ mobileNavRightCut(); }, 275)
     }
   };
 
