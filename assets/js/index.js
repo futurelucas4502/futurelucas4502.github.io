@@ -48,16 +48,7 @@ function init(href){ // Initial animation of hori-selector
   });
 
   $(function() {
-
     if(Modernizr.history){ // Check if history pushing is enabled in this browser its 2020 so this probably isnt nessecary but just in case
-
-    var $mainContent = $("#main-content"),
-        $pageWrap    = $("#page-wrap"),
-        baseHeight   = 0;
-        
-    $pageWrap.height($pageWrap.height());
-    baseHeight = $pageWrap.height() - $mainContent.height();
-    
     $("nav").delegate("a", "click", function(e) { // The code that executes when link pressed
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown"){
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
@@ -72,29 +63,17 @@ function init(href){ // Initial animation of hori-selector
     });
 
     function loadContent(href) {
-      if(href == "index.html")setTimeout(function(){indexReady()}, 500); // Set timeout instead of loading immediatly to allow for DOM delays
-
-  $mainContent
-    .find("#guts")
-    .fadeOut(200, function() { // Fade out the content of the current page
-      $mainContent
-        .hide()
-        .load(href + " #guts", function() { // Load the contents of whatever href is
-          $mainContent.fadeIn(200, function() { // Fade in the content of the href
-            $pageWrap.animate({
-              height: baseHeight + $mainContent.height() + "px" // Smooth animate the page extending as the data fades in
-            });
-             // The following animates moving the hori selector and setting the active link
-            $.get(location.href, function( my_var ) { document.title = $('<div />').append($.parseHTML(my_var)).find('title').text(); }) // Fetches title of page loaded and sets it
-            if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
-              setTimeout(function(){init(href)}, 700); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
-            } else {
-              mobilehref = href
-            }
-         });
-    });
-  });
-};
+      if(href == "index.html"){
+        indexReady()
+      }else {
+        otherReady(href)
+      }
+      if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
+        setTimeout(function(){init(href)}, 200); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
+      } else {
+        mobilehref = href
+      }
+    };
     
     $(window).bind('popstate', function(){ // Run on forward or back pressed
       _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
@@ -130,7 +109,7 @@ function mobileNavRightCut(){
 
 // End Navigation
 
-// Start Home Cards Loading
+// Start Basic Page Setup
 $(document).ready(async function () {
   response = await fetch("https://api.github.com/users/futurelucas4502/repos");
   response = await response.json();
@@ -183,10 +162,11 @@ async function indexReady() {
     document.getElementById(response[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
   }
 }
-// End Home Cards Loading
+// End Basic Page Setup
 
 // Start Other Pages Loading
 async function otherReady() {
+
   response = await fetch("https://api.github.com/users/futurelucas4502/repos");
   response = await response.json();
   console.log(response)
