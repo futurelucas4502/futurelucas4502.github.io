@@ -137,7 +137,7 @@ $(document).ready(async function () {
   }
   setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
 })
-let response
+let indexResponse = undefined
 async function indexReady() {
   document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
   <h1>Welcome to my work and personal projects!</h1>
@@ -154,33 +154,36 @@ async function indexReady() {
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
       maintained by Lucas Wilson (futurelucas4502).</h6>
 </div>`
-  response = await fetch("https://api.github.com/users/futurelucas4502/repos");
-  response = await response.json();
-  for (let i = 0; i < response.length; i++) {
-    var name = response[i]["name"].replace(/_/g, ' ');
+if(indexResponse == undefined){
+  indexResponse = await fetch("https://api.github.com/users/futurelucas4502/repos");
+  indexResponse = await indexResponse.json();
+}
+  for (let i = 0; i < indexResponse.length; i++) {
+    var name = indexResponse[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     document.getElementById("loading").style.display = "none"
     document.getElementById("cards").innerHTML += `
     <div class="col-sm d-flex justify-content-center">
       <div class="card" style="width: 18rem;margin-top:20px">
-        <img style="height:180px" id="${response[i]["name"]}" class="card-img-top">
+        <img style="height:180px" id="${indexResponse[i]["name"]}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${name}</h5>
-          <p class="card-text">${response[i]["description"]}</p>
+          <p class="card-text">${indexResponse[i]["description"]}</p>
           <div class="vertical">
-            <a style="display: block!important;margin-bottom:10px" href="index.html?page=${response[i]["name"]}" class="btn btn-primary">View</a>
-            <a style="display: block!important;" href="${response[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
+            <a style="display: block!important;margin-bottom:10px" href="index.html?page=${indexResponse[i]["name"]}" class="btn btn-primary">View</a>
+            <a style="display: block!important;" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
           </div>
         </div>
       </div>
     </div>
     `
-    document.getElementById(response[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
+    document.getElementById(indexResponse[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
   }
 }
 // End Basic Page Setup
 
 // Start Other Pages Loading
+let otherResponse = Array
 async function otherReady(name) {
   document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
   <div class="container">
@@ -194,9 +197,11 @@ async function otherReady(name) {
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and
       maintained by Lucas Wilson (futurelucas4502).</h6>
 </div>`
-  response = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
-  response = await response.json();
-  var html = converter.makeHtml(atob(response["content"]));
+if(otherResponse[name]==undefined){
+  otherResponse[name] = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
+  otherResponse[name] = await otherResponse[name].json();
+}
+  var html = converter.makeHtml(atob(otherResponse[name]["content"]));
   document.getElementById("loading").style.display = "none"
   document.getElementById("content").innerHTML = html
 }
