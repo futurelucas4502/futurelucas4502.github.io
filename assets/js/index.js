@@ -1,3 +1,23 @@
+// Hello and welcome to my project this website is a singlepage site that can use either
+// the github API or my personal code to display projects and all the info about them.
+// How to use:
+// First you need to have public github repositorys
+// These repositorys must be named with _ where you want spaces to be added e.g. management_console would get changed to Management Console
+// Then you need to have a description for the repository which will be used in the cards on the main page
+// Next you need to have a readme.md file as this is used to load the page content into the site
+// Next if you want photos on the cards instead of 404 errors then you should place a image called screenshot.png in your master branch in the following path: assets/screenshot.png
+// Finally you must set the variables below to what you want them as:
+var fixedName1 = "management_console" // Set to the first tab you want to be visible outside the dropdown
+var fixedName2 = "management_console_mobile" // Set to the second tab you want to be visible outside the dropdown
+var owner = "futurelucas4502" // Set to your github username
+var useAPI = false // Set whether to use the official API or my personal code. Note: The API has a rate limit of 60 requests an hour therefore its recommended to have this set as false.
+var site_url = "https://futurelucas4502.github.io" // URL to index of your site
+var fixedName1FA = "fa-address-book" // Font awesome icon to use for the fixed name links
+var fixedName2FA = "fa-address-book" // Font awesome icon to use for the fixed name links
+var full_name = "Lucas Wilson" // Your full name
+
+
+// Start code (Don't edit data below unless you need to)
 // Start Navigation
 var mobilehref
 var converter = new showdown.Converter();
@@ -31,13 +51,22 @@ function init(href){ // Initial animation of hori-selector
     var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
     var itemPosNewAnimTop = activeItemNewAnim.position();
     var itemPosNewAnimLeft = activeItemNewAnim.position();
-    $(".hori-selector").css({
-      "top":itemPosNewAnimTop.top + "px", 
-      "left":itemPosNewAnimLeft.left + "px",
-      "height": activeWidthNewAnimHeight + "px",
-      "width": activeWidthNewAnimWidth + "px"
-    });
-    setTimeout(function(){ mobileNavRightCut(); }, 275)
+    if(closeNavMobile.matches){
+      $(".hori-selector").css({
+        "top":itemPosNewAnimTop.top + "px", 
+        "left":itemPosNewAnimLeft.left + "px",
+        "height": activeWidthNewAnimHeight + "px",
+        "width": activeWidthNewAnimWidth + "px"
+      });
+    } else {
+      $(".hori-selector").css({
+        "top":itemPosNewAnimTop.top + "px", 
+        "left":itemPosNewAnimLeft.left + "px",
+        "height": (activeWidthNewAnimHeight - 10) + "px",
+        "width": activeWidthNewAnimWidth + "px"
+      });
+      setTimeout(function(){ mobileNavRightCut(); }, 275)
+    }
   };
 
   $(window).on('resize', function(){
@@ -80,7 +109,7 @@ function init(href){ // Initial animation of hori-selector
       _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
       if(location.href.split("?")[1] != undefined)_link+=("?"+location.href.split("?")[1]); // Add the page request
       if(_link == "" || _link == "index"){
-        _link = "index.html" // Adds support for going back to just https://futurelucas4502.github.io/
+        _link = "index.html" // Adds support for going back to just site_URL
       }
       if (!(getComputedStyle(document.getElementById("toggler"), null).display == "none")){
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler before loading past or future content
@@ -101,7 +130,7 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
 });
 
 function mobileNavRightCut(){
-  if($('#navbarSupportedContent').find('.active')[0].children[0].id == "navbarDropdown" && closeNavMobile.matches){
+  if($('#navbarSupportedContent').find('.active')[0].children[0].id == "navbarDropdown"){
     document.getElementById("right").style.display = "none"
   } else{
     document.getElementById("right").style.display = "block"
@@ -109,13 +138,25 @@ function mobileNavRightCut(){
 }
 
 // End Navigation
-
 // Start Basic Page Setup
 let indexResponse = new Array()
 $(document).ready(async function () {
-  // indexResponse = await fetch("https://api.github.com/users/futurelucas4502/repos"); // Using github API
-  // indexResponse = await indexResponse.json();
-  await fetch('https://thingproxy.freeboard.io/fetch/'+`https://github.com/futurelucas4502?tab=repositories`).then(res => { // Not using github API
+  var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = `https://github.com/${owner}.png`;
+  document.getElementsByTagName('head')[0].appendChild(link);
+  document.getElementById("embelem").src = `https://github.com/${owner}.png`
+  document.getElementById("owner").innerHTML = `${owner.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}'s Work`
+  fixedName1 = fixedName1.replace(/_/g, ' ');
+  fixedName1 = fixedName1.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+  fixedName2 = fixedName2.replace(/_/g, ' ');
+  fixedName2 = fixedName2.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+  if(useAPI){
+    indexResponse = await fetch(`https://api.github.com/users/${owner}/repos`); // Using github API
+    indexResponse = await indexResponse.json();
+  } else{
+    await fetch('https://thingproxy.freeboard.io/fetch/'+`https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
     // The API call was successful!
     return res.text();
   }).then(function (html) {
@@ -132,7 +173,8 @@ $(document).ready(async function () {
       indexResponse.push(tempName)
     }
   })
-  if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location.href == "https://futurelucas4502.github.io/index" || document.location.href == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/"){
+  }
+  if(document.location.href == `${site_url}/index.html` || document.location.href == `${site_url}/index` || document.location.href == `${site_url}/` || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/"){
     indexReady()
   } else {
     otherReady(location.href.split("=")[1])
@@ -140,7 +182,12 @@ $(document).ready(async function () {
   for (let i = 0; i < indexResponse.length; i++) { // Add links to dropdown
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-    if(name == "Management Console" || name == "Management Console Mobile"){
+    if(name == fixedName1){
+      document.getElementById("fixedName1").innerHTML = `<i class="far ${fixedName1FA}"></i>${fixedName1}`
+      document.getElementById("fixedName1").href = `index.html?page=${indexResponse[i]["name"]}`
+    }else if(name == fixedName2){
+      document.getElementById("fixedName2").innerHTML = `<i class="far ${fixedName2FA}"></i>${fixedName2}`
+      document.getElementById("fixedName2").href = `index.html?page=${indexResponse[i]["name"]}`
     }else {
       document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${indexResponse[i]["name"]}" class="dropdown-item">${name}</a>`
     }
@@ -156,6 +203,7 @@ $(document).ready(async function () {
   setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
 })
 async function indexReady() {
+  document.title = `${owner}'s Work`
   document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
   <h1>Welcome to my work and personal projects!</h1>
   <h6 class="text-muted">Only my Open-Source work and projects are shown as some work needs to be kept
@@ -169,7 +217,7 @@ async function indexReady() {
       </div>
   </div>
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
-      maintained by Lucas Wilson (futurelucas4502).</h6>
+      maintained by ${full_name} (${owner}).</h6>
 </div>`
   for (let i = 0; i < indexResponse.length; i++) {
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
@@ -190,7 +238,7 @@ async function indexReady() {
       </div>
     </div>
     `
-    document.getElementById(indexResponse[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${indexResponse[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
+    document.getElementById(indexResponse[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/${owner}/${indexResponse[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
   }
 }
 // End Basic Page Setup
@@ -198,6 +246,7 @@ async function indexReady() {
 // Start Other Pages Loading
 let otherResponse = Array
 async function otherReady(name) {
+  document.title = `${owner}'s Work || ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
   document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
   <div class="container">
       <h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
@@ -208,21 +257,26 @@ async function otherReady(name) {
       </div>
   </div>
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and
-      maintained by Lucas Wilson (futurelucas4502).</h6>
+      maintained by ${full_name} (${owner}).</h6>
 </div>`
-// if(otherResponse[name]==undefined){ // Method using github API which has a rate limit of 60 requests an hour
-//   otherResponse[name] = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
-//   otherResponse[name] = await otherResponse[name].json();
-// }
-if(otherResponse[name]==undefined){ // Method where I fetch the file contents of the readme manually
-    await fetch(`https://raw.githubusercontent.com/futurelucas4502/${name}/master/README.md`).then(res => {
+var html
+if(useAPI){
+  if(otherResponse[name]==undefined){ // Method using github API which has a rate limit of 60 requests an hour
+    otherResponse[name] = await fetch(`https://api.github.com/repos/${owner}/${name}/readme`);
+    otherResponse[name] = await otherResponse[name].json();
+  }
+  html = converter.makeHtml(atob(otherResponse[name]["content"]));
+} else {
+  if(otherResponse[name]==undefined){ // Method where I fetch the file contents of the readme manually
+    await fetch(`https://raw.githubusercontent.com/${owner}/${name}/master/README.md`).then(res => {
       return res.text();
   })
   .then(data => {
     otherResponse[name] = data;
   });
   }
-  var html = converter.makeHtml(otherResponse[name]);
+  html = converter.makeHtml(otherResponse[name]);
+}
   document.getElementById("loading").style.display = "none"
   document.getElementById("content").innerHTML = html
 }

@@ -10,21 +10,12 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
     <link rel="stylesheet" href="./assets/css/index.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <title>Lucas Wilson's Work</title>
 </head>
 
 <body>
         <nav class="navbar navbar-expand-lg navbar-dark navbar-mainbg sticky-top">
-            <picture style="margin-left: 1rem;" class="embelem">
-                <source srcset="./assets/images/embelem.webp" class="embelem" alt="Embelem" type="image/webp">
-                <source srcset="./assets/images/embelem.png" class="embelem" alt="Embelem" type="image/png">
-                <img src="./assets/images/embelem.webp" class="embelem" alt="Embelem" type="image/webp">
-            </picture>
-            <a class="navbar-brand">Lucas' Work</a>
+            <img id="embelem" alt="Github user pfp" style="margin-left: 1rem;" class="embelem">
+            <a id="owner" class="navbar-brand"></a>
             <button style="z-index: 1" class="navbar-toggler collapsed" id="toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -32,7 +23,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <div class="hori-selector">
+                    <div class="hori-selector" style="top: 0px;left: 100px;height: 52px;width: 105px;">
                         <div class="left"></div>
                         <div id="right" class="right"></div>
                     </div>
@@ -40,12 +31,10 @@
                         <a class="nav-link" href="index.html"><i class="fas fa-home"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html?page=management_console"><i
-                                class="far fa-address-book"></i>Management Console</a>
+                        <a id="fixedName1" class="nav-link"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html?page=management_console_mobile"><i
-                                class="far fa-address-book"></i>Management Console Mobile</a>
+                        <a id="fixedName2" class="nav-link"></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
