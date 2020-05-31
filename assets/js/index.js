@@ -1,5 +1,6 @@
 // Start Navigation
 var mobilehref
+var converter = new showdown.Converter();
 var closeNavMobile = window.matchMedia("(max-width: 991px)")
 closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on state changes
 
@@ -66,7 +67,7 @@ function init(href){ // Initial animation of hori-selector
       if(href == "index.html"){
         indexReady()
       }else {
-        otherReady(href)
+        otherReady(href.split("=")[1])
       }
       if (getComputedStyle(document.getElementById("toggler"), null).display == "none"){
         setTimeout(function(){init(href)}, 200); // Set timeout instead of loading immediatly to allow for DOM delays e.g. loading of scroll bar
@@ -113,10 +114,10 @@ function mobileNavRightCut(){
 $(document).ready(async function () {
   response = await fetch("https://api.github.com/users/futurelucas4502/repos");
   response = await response.json();
-  if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location == "https://futurelucas4502.github.io/index" || document.location == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location == "http://localhost/futurelucas4502.github.io/index" || document.location == "http://localhost/futurelucas4502.github.io/"){
+  if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location.href == "https://futurelucas4502.github.io/index" || document.location.href == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/"){
     indexReady()
   } else {
-    otherReady("="+location.href.split("=")[1])
+    otherReady(location.href.split("=")[1])
   }
   for (let i = 0; i < response.length; i++) { // Add links to dropdown
     var name = response[i]["name"].replace(/_/g, ' ');
@@ -140,10 +141,11 @@ let response
 async function indexReady() {
   response = await fetch("https://api.github.com/users/futurelucas4502/repos");
   response = await response.json();
-  document.getElementById("loading").style.display = "none"
+  document.getElementById("content").innerHTML = `<div class="row" id="cards"></div>`
   for (let i = 0; i < response.length; i++) {
     var name = response[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+    document.getElementById("loading").style.display = "none"
     document.getElementById("cards").innerHTML += `
     <div class="col-sm d-flex justify-content-center">
       <div class="card" style="width: 18rem;margin-top:20px">
@@ -165,10 +167,11 @@ async function indexReady() {
 // End Basic Page Setup
 
 // Start Other Pages Loading
-async function otherReady() {
-
-  response = await fetch("https://api.github.com/users/futurelucas4502/repos");
+async function otherReady(name) {
+  response = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
   response = await response.json();
-  console.log(response)
+  var html = converter.makeHtml(atob(response["content"]));
+  document.getElementById("loading").style.display = "none"
+  document.getElementById("content").innerHTML = html
 }
 // End Other Pages Loading
