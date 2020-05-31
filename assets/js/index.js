@@ -156,7 +156,7 @@ $(document).ready(async function () {
     indexResponse = await fetch(`https://api.github.com/users/${owner}/repos`); // Using github API
     indexResponse = await indexResponse.json();
   } else{
-    await fetch('https://thingproxy.freeboard.io/fetch/'+`https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
+    await fetch('https://cors-anywhere.herokuapp.com/'+`https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
     // The API call was successful!
     return res.text();
   }).then(function (html) {
