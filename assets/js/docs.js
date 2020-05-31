@@ -41,7 +41,8 @@ async function otherReady(name) {
         })
     }
     // Method where I fetch the file contents of the readme manually
-    if(get("page") == undefined)var page = "index"
+    var page = get("page")
+    if(page == undefined)page = "index"
     await fetch(`https://raw.githubusercontent.com/${owner}/${name}/master/docs/${page}.md`).then(res => {
         return res.text();
     }).then(data => {
