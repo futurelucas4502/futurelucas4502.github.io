@@ -21,12 +21,17 @@ function init(href){ // Initial animation of hori-selector
     }
     mobilehref = undefined
   }
-    var activeItemNewAnim = $('#navbarSupportedContent').find('.active');
+    var tabsNewAnim = $('#navbarSupportedContent');
+    var activeItemNewAnim = tabsNewAnim.find('.active');
+    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+    var itemPosNewAnimTop = activeItemNewAnim.position();
+    var itemPosNewAnimLeft = activeItemNewAnim.position();
     $(".hori-selector").css({
-      "top":activeItemNewAnim.position() + "px", 
-      "left":activeItemNewAnim.position()+ "px",
-      "height": activeItemNewAnim.innerHeight() + "px",
-      "width": activeItemNewAnim.innerWidth() + "px"
+      "top":itemPosNewAnimTop.top + "px", 
+      "left":itemPosNewAnimLeft.left + "px",
+      "height": activeWidthNewAnimHeight + "px",
+      "width": activeWidthNewAnimWidth + "px"
     });
     setTimeout(function(){ mobileNavRightCut(); }, 275)
   };
