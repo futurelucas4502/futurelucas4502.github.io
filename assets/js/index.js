@@ -67,12 +67,13 @@ function init(href){ // Initial animation of hori-selector
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown"){
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
+      e.preventDefault(); // Cancel redirection to prevent page loading like normal
       try {
-        _link = ($(this).attr("href")).trim(); // Get the href of the link pressed and decode it
+        var _link = ($(this).attr("href")).trim();
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
-        e.preventDefault(); // Cancel redirection to prevent page loading like normal
-      } catch {
+      } catch(e) {
+        console.log(e)
       }
     });
 
@@ -240,7 +241,7 @@ async function otherReady(name) {
               aria-hidden="true"></span>Loading...</h4>
       <div id="content">
   </div>
-  <a style="display: block!important;" href="${site_url}/docs/${name}" class="btn btn-primary">View Documentation</a>
+  <a style="display: block!important;" href="${site_url}/docs/index.html?docs=${name}" class="btn btn-primary">View Documentation</a>
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and
       maintained by ${full_name} (${owner}).</h6>
 </div>`
