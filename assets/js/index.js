@@ -111,20 +111,21 @@ function mobileNavRightCut(){
 // End Navigation
 
 // Start Basic Page Setup
+let indexResponse = undefined
 $(document).ready(async function () {
-  response = await fetch("https://api.github.com/users/futurelucas4502/repos");
-  response = await response.json();
+  indexResponse = await fetch("https://api.github.com/users/futurelucas4502/repos");
+  indexResponse = await indexResponse.json();
   if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location.href == "https://futurelucas4502.github.io/index" || document.location.href == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/"){
     indexReady()
   } else {
     otherReady(location.href.split("=")[1])
   }
-  for (let i = 0; i < response.length; i++) { // Add links to dropdown
-    var name = response[i]["name"].replace(/_/g, ' ');
+  for (let i = 0; i < indexResponse.length; i++) { // Add links to dropdown
+    var name = indexResponse[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     if(name == "Management Console" || name == "Management Console Mobile"){
     }else {
-      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${response[i]["name"]}" class="dropdown-item">${name}</a>`
+      document.getElementById("navDropdownInner").innerHTML += `<a href="index.html?page=${indexResponse[i]["name"]}" class="dropdown-item">${name}</a>`
     }
   }
   if(location.href.split("?")[1] != undefined){
@@ -137,7 +138,6 @@ $(document).ready(async function () {
   }
   setTimeout(function(){ init(); }, 700); // Runs init when page first loaded
 })
-let indexResponse = undefined
 async function indexReady() {
   document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
   <h1>Welcome to my work and personal projects!</h1>
@@ -177,7 +177,7 @@ if(indexResponse == undefined){
       </div>
     </div>
     `
-    document.getElementById(indexResponse[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${response[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
+    document.getElementById(indexResponse[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/futurelucas4502/${indexResponse[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
   }
 }
 // End Basic Page Setup
@@ -197,11 +197,19 @@ async function otherReady(name) {
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and
       maintained by Lucas Wilson (futurelucas4502).</h6>
 </div>`
-if(otherResponse[name]==undefined){
-  otherResponse[name] = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
-  otherResponse[name] = await otherResponse[name].json();
-}
-  var html = converter.makeHtml(atob(otherResponse[name]["content"]));
+// if(otherResponse[name]==undefined){ // Method using github API which has a rate limit of 60 requests an hour
+//   otherResponse[name] = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
+//   otherResponse[name] = await otherResponse[name].json();
+// }
+if(otherResponse[name]==undefined){ // Method where I fetch the file contents of the readme manually
+    await fetch(`https://raw.githubusercontent.com/futurelucas4502/${name}/master/README.md`).then(res => {
+      return res.text();
+  })
+  .then(data => {
+    otherResponse[name] = data;
+  });
+  }
+  var html = converter.makeHtml(otherResponse[name]);
   document.getElementById("loading").style.display = "none"
   document.getElementById("content").innerHTML = html
 }
