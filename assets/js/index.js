@@ -139,9 +139,23 @@ $(document).ready(async function () {
 })
 let response
 async function indexReady() {
+  document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
+  <h1>Welcome to my work and personal projects!</h1>
+  <h6 class="text-muted">Only my Open-Source work and projects are shown as some work needs to be kept
+      Closed-Source.</h6>
+  <div class="container">
+      <h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
+              style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
+              aria-hidden="true"></span>Loading...</h4>
+      <div id="content">
+        <div class="row" id="cards"></div>
+      </div>
+  </div>
+  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
+      maintained by Lucas Wilson (futurelucas4502).</h6>
+</div>`
   response = await fetch("https://api.github.com/users/futurelucas4502/repos");
   response = await response.json();
-  document.getElementById("content").innerHTML = `<div class="row" id="cards"></div>`
   for (let i = 0; i < response.length; i++) {
     var name = response[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
@@ -168,6 +182,18 @@ async function indexReady() {
 
 // Start Other Pages Loading
 async function otherReady(name) {
+  document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
+  <div class="container">
+      <h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
+              style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
+              aria-hidden="true"></span>Loading...</h4>
+      <div id="content">
+        <div class="row" id="cards"></div>
+      </div>
+  </div>
+  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and
+      maintained by Lucas Wilson (futurelucas4502).</h6>
+</div>`
   response = await fetch(`https://api.github.com/repos/futurelucas4502/${name}/readme`);
   response = await response.json();
   var html = converter.makeHtml(atob(response["content"]));
