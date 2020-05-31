@@ -111,10 +111,27 @@ function mobileNavRightCut(){
 // End Navigation
 
 // Start Basic Page Setup
-let indexResponse = undefined
+let indexResponse = new Array()
 $(document).ready(async function () {
-  indexResponse = await fetch("https://api.github.com/users/futurelucas4502/repos");
-  indexResponse = await indexResponse.json();
+  // indexResponse = await fetch("https://api.github.com/users/futurelucas4502/repos"); // Using github API
+  // indexResponse = await indexResponse.json();
+  await fetch('https://thingproxy.freeboard.io/fetch/'+`https://github.com/futurelucas4502?tab=repositories`).then(res => { // Not using github API
+    // The API call was successful!
+    return res.text();
+  }).then(function (html) {
+  
+    // Convert the HTML string into a document object
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
+    // Get the data
+    for (let i = 0; i < doc.querySelectorAll("a[itemprop='name codeRepository']").length; i++) {
+      let tempName = {
+        "name" : doc.querySelectorAll("a[itemprop='name codeRepository']")[i].innerText.replace(/\s+/g, ''),
+        "description" : doc.querySelectorAll("p[itemprop='description']")[i].innerText
+      }
+      indexResponse.push(tempName)
+    }
+  })
   if(document.location.href == "https://futurelucas4502.github.io/index.html" || document.location.href == "https://futurelucas4502.github.io/index" || document.location.href == "https://futurelucas4502.github.io/" || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/"){
     indexReady()
   } else {
@@ -154,10 +171,6 @@ async function indexReady() {
   <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
       maintained by Lucas Wilson (futurelucas4502).</h6>
 </div>`
-if(indexResponse == undefined){
-  indexResponse = await fetch("https://api.github.com/users/futurelucas4502/repos");
-  indexResponse = await indexResponse.json();
-}
   for (let i = 0; i < indexResponse.length; i++) {
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
