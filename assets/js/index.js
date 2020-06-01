@@ -267,7 +267,6 @@ async function otherReady(name) {
   }
   document.getElementById("loading").style.display = "none"
   document.getElementById("main-content").innerHTML = html
-  console.log(document.getElementById("main-content").innerHTML)
   document.getElementById("content").innerHTML = htmlInner
 }
 // End Other Pages Loading
