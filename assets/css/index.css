@@ -8,10 +8,6 @@
 	margin-right: 10px;
 }
 /*----------multi-level-accordian-menu------------*/
-.navbar-brand{
-	padding: 15px;
-	color: #fff !important;
-}
 .navbar-mainbg{
 	background-color: #5161ce;
 	padding: 0px;
@@ -124,14 +120,34 @@
 }
 
 .embelem{
-    height:40px;
+	height:40px;
 	width:40px;
 }
-
-.sticky-top{
-	position: fixed;
-	top: 0;
-	width:100%
+.navbar-brand {
+	padding: 15px;
+	color: #fff !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap !important;
+	display: block;
+	min-width: 1px;
+	margin-right:0px;
+}
+  
+@media (max-width: 991px) {
+	.navbar-brand{
+		width: 50%;
+		padding: 15px;
+	}
+	nav{
+		height:62px
+	}
+	.abs-center-x {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align:center;
+	}
 }
 
 #main-content{

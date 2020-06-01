@@ -227,8 +227,7 @@ async function indexReady() {
         <div class="row" id="cards"></div>
       </div>
   </div>
-  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
-      maintained by ${full_name} (${owner}).</h6>
+  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is maintained by ${full_name} (${owner}).</h6>
 </div>`
   for (let i = 0; i < indexResponse.length; i++) {
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
@@ -259,10 +258,6 @@ async function indexReady() {
 var otherResponse = Array()
 async function otherReady(name) {
   document.title = `${owner}'s Work || ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
-
-  // <a style="display: block!important;" href="${site_url}/docs/index.html?docs=${name}" class="btn btn-primary">View Documentation</a>
-  // <h6 style="margin:20px 0px" class="text-muted">Disclaimer: ${name} is owned and maintained by ${full_name} (${owner}).</h6>
-
   var html
   var htmlInner
   var description
