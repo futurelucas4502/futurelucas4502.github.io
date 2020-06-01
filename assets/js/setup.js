@@ -15,6 +15,7 @@ var fixedName2 = "management_console_mobile" // Set to the second tab you want t
 var fixedName1FA = "fa-address-book" // Font awesome icon to use for the fixed name links
 var fixedName2FA = "fa-address-book" // Font awesome icon to use for the fixed name links
 var full_name = "Lucas Wilson" // Your full name
+var repo_name = "futurelucas4502.github.io" // Name of the repo your website is stored in
 
 
-export { site_url, owner, useAPI, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name }
+export { site_url, owner, useAPI, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name }
