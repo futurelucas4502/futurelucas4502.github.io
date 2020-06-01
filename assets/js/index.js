@@ -1,10 +1,5 @@
 import { site_url, owner, useAPI, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name } from "./setup.js"
 
-function get(name) {
-  if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
-    return decodeURIComponent(name[1]);
-}
-
 // Start Navigation
 var mobilehref
 var converter = new showdown.Converter();
@@ -46,7 +41,6 @@ function init(href) { // Initial animation of hori-selector
       "height": activeWidthNewAnimHeight + "px",
       "width": activeWidthNewAnimWidth + "px"
     });
-    setTimeout(function () { mobileNavRightCut(); }, 275)
   } else { // Desktop view
     $(".hori-selector").css({
       "top": itemPosNewAnimTop.top + "px",
@@ -55,6 +49,7 @@ function init(href) { // Initial animation of hori-selector
       "width": activeWidthNewAnimWidth + "px"
     });
   }
+  setTimeout(function () { navRightCut(); }, 275)
 };
 
 $(window).on('resize', function () {
@@ -133,7 +128,7 @@ $(document).ready(function () { // Closes nav toggler if opened on mobile and yo
   });
 });
 
-function mobileNavRightCut() {
+function navRightCut() {
   if ($('#navbarSupportedContent').find('.active')[0].children[0].id == "navbarDropdown") {
     document.getElementById("right").style.display = "none"
   } else {
