@@ -25,6 +25,12 @@ $(document).ready(async function () {
             }
             otherResponse.push(tempName)
         })
+        var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.type = 'image/x-icon';
+        link.rel = 'shortcut icon';
+        link.href = `https://github.com/${owner}.png`;
+        document.getElementsByTagName('head')[0].appendChild(link);
+        document.title = `${owner}'s Documentation || ${(repo_name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
         document.getElementsByClassName("project-name")[0].textContent = "futurelucas4502.github.io - Documentation"
         document.getElementsByClassName("project-tagline")[0].textContent = otherResponse[0]["description"]
         document.getElementById("content").innerHTML = `<h1 id="futurelucas4502githubiodocumentation">futurelucas4502.github.io - Documentation:</h1>
