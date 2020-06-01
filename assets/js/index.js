@@ -235,7 +235,7 @@ async function indexReady() {
 // End Basic Page Setup
 
 // Start Other Pages Loading
-let otherResponse = Array
+var otherResponse = Array()
 async function otherReady(name) {
   document.title = `${owner}'s Work || ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
 
@@ -244,6 +244,7 @@ async function otherReady(name) {
 
   var html
   var htmlInner
+  var description
   await fetch(`${site_url}/docs/index.html`).then(res => {
     return res.text()
   }).then(data => {
@@ -268,5 +269,10 @@ async function otherReady(name) {
   document.getElementById("loading").style.display = "none"
   document.getElementById("main-content").innerHTML = html
   document.getElementById("content").innerHTML = htmlInner
+  for (let i = 0; i < indexResponse.length; i++) {
+    if(indexResponse[i]["name"] == name)description = indexResponse[i]["description"]
+  }
+  document.getElementsByClassName("project-name")[0].textContent = document.getElementsByTagName("h1")[1].innerText
+  document.getElementsByClassName("project-tagline")[0].textContent = description
 }
 // End Other Pages Loading
