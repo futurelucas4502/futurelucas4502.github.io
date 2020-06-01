@@ -1,4 +1,4 @@
-import { site_url, owner, useAPI, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name } from "./setup.js"
+import { site_url, owner, useAPI, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name } from "./setup.js"
 
 // Start Navigation
 var mobilehref
@@ -140,6 +140,21 @@ function navRightCut() {
 // Start Basic Page Setup
 let indexResponse = new Array()
 $(document).ready(async function () {
+  await fetch('https://api.allorigins.win/raw?url=' + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
+  // The API call was successful!
+  return res.text();
+}).then(function (html) {
+
+  // Convert the HTML string into a document object
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(html, 'text/html');
+  // Get the data
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
+  document.getElementsByTagName('head')[0].appendChild(link);
+
+}).catch(error => console.log("An error occured setting up the theme header. The site will still work without this however it may flicker slightly when you select view on a repo"))
   var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
