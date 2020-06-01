@@ -147,7 +147,7 @@
 		text-align:center;
 	}
 }
-.btn+.btn {
+.vertical .btn+.btn {
     margin-left: 0rem;
 }
 
