@@ -152,6 +152,7 @@ $(document).ready(async function () {
   document.getElementsByTagName('head')[0].appendChild(link);
   document.getElementById("embelem").src = `https://github.com/${owner}.png`
   document.getElementById("owner").innerHTML = `${owner.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}'s Work`
+  document.getElementById("owner").setAttribute('title', `${owner.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}'s Work`);
   var fixedName1Var = fixedName1.replace(/_/g, ' ');
   fixedName1Var = fixedName1Var.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
   var fixedName2Var = fixedName2.replace(/_/g, ' ');
