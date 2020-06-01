@@ -147,6 +147,9 @@
 		text-align:center;
 	}
 }
+.btn+.btn {
+    margin-left: 0rem;
+}
 
 .dropdown-item{
 	padding: .25rem 1.5rem!important;
