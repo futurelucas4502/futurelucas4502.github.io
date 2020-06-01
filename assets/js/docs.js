@@ -12,6 +12,9 @@ $(document).ready(async function () {
     if (document.location.href == `${site_url}/docs/index.html` || document.location.href == `${site_url}/docs/index` || document.location.href == `${site_url}/docs/` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index" || document.location.href == "http://localhost/futurelucas4502.github.io/docs/") {
         window.location.replace(`${site_url}`); // Load /docs = redirect to main page
     } else if(document.location.href == `${site_url}/docs/index.html?docs=${repo_name}` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/testindex.html?docs=futurelucas4502.github.io") {
+        document.getElementById("content").innerHTML = `<h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
+              style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
+              aria-hidden="true"></span>Loading...</h4>`
         await fetch('https://cors-anywhere.herokuapp.com/' + `https://github.com/${owner}/${repo_name}`).then(res => { // Not using github API
             // The API call was successful!
             return res.text();
