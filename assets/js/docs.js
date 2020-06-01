@@ -22,6 +22,9 @@ $(document).ready(async function () {
             // Convert the HTML string into a document object
             var parser = new DOMParser();
             var doc = parser.parseFromString(html, 'text/html');
+            console.log(parser)
+            console.log(doc)
+            console.log(doc.querySelectorAll("span[itemprop='about']")[0].innerText)
             // Get the data
             let tempName = {
                 "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText
