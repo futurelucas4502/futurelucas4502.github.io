@@ -184,7 +184,7 @@ $(document).ready(async function () {
         }
         indexResponse.push(tempName)
       }
-    })
+    }).catch(error => document.body.innerHTML = "An error occured if you are using safari on mobile or IE this site wont work.<br>If not try again later or open an issue on github.")
   }
   if (document.location.href == `${site_url}/index.html` || document.location.href == `${site_url}/index` || document.location.href == `${site_url}/` || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/") {
     indexReady()
@@ -279,7 +279,7 @@ async function otherReady(name) {
         return res.text();
       }).then(data => {
         otherResponse[name] = data;
-      });
+      }).catch(error => document.body.innerHTML = "An error occured if you are using safari on mobile or IE this site wont work.<br>If not try again later or open an issue on github.")
     }
     htmlInner = converter.makeHtml(otherResponse[name]);
   }

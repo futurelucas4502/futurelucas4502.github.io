@@ -8,6 +8,22 @@ function get(name) {
         return decodeURIComponent(name[1]);
 }
 
+async function getData(ownerVar, nameVar){
+    await fetch('https://api.allorigins.win/raw?url=' + `https://github.com/${ownerVar}/${nameVar}`).then(res => { // Not using github API
+    // The API call was successful!
+    return res.text();
+}).then(function (html) {
+    // Convert the HTML string into a document object
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
+    // Get the data
+    let tempName = {
+        "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText // THIS IS THE LINE CAUSING THE ERROR ON SAFARI MOBILE
+    }
+    otherResponse.push(tempName)
+}).catch(error => document.body.innerHTML = "An error occured if you are using safari on mobile or IE this site wont work.<br>If not try again later or open an issue on github.")
+}
+
 $(document).ready(async function () {
     if (document.location.href == `${site_url}/docs/index.html` || document.location.href == `${site_url}/docs/index` || document.location.href == `${site_url}/docs/` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index" || document.location.href == "http://localhost/futurelucas4502.github.io/docs/") {
         window.location.replace(`${site_url}`); // Load /docs = redirect to main page
@@ -15,20 +31,7 @@ $(document).ready(async function () {
         document.getElementById("content").innerHTML = `<h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
               style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
               aria-hidden="true"></span>Loading...</h4>`
-        await fetch('https://cors-anywhere.herokuapp.com/' + `https://github.com/${owner}/${repo_name}`).then(res => { // Not using github API
-            // The API call was successful!
-            return res.text();
-        }).then(function (html) {
-            // Convert the HTML string into a document object
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(html, 'text/html');
-            console.log(parser)
-            // Get the data
-            let tempName = {
-                "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText // THIS IS THE LINE CAUSING THE ERROR ON SAFARI MOBILE
-            }
-            otherResponse.push(tempName)
-        })
+        await getData(owner, repo_name)
         var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
         link.type = 'image/x-icon';
         link.rel = 'shortcut icon';
@@ -58,19 +61,7 @@ async function otherReady(name) {
         otherResponse = await fetch(`https://api.github.com/repos/${owner}/${name}`); // Using github API
         otherResponse = await otherResponse.json();
     } else {
-        await fetch('https://cors-anywhere.herokuapp.com/' + `https://github.com/${owner}/${name}`).then(res => { // Not using github API
-            // The API call was successful!
-            return res.text();
-        }).then(function (html) {
-            // Convert the HTML string into a document object
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(html, 'text/html');
-            // Get the data
-            let tempName = {
-                "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText
-            }
-            otherResponse.push(tempName)
-        })
+        await getData(owner, name)
     }
     // Method where I fetch the file contents of the readme manually
     var page = get("page")
