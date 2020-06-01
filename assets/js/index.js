@@ -266,7 +266,6 @@ async function otherReady(name) {
     }
     htmlInner = converter.makeHtml(otherResponse[name]);
   }
-  document.getElementById("loading").style.display = "none"
   document.getElementById("main-content").innerHTML = html
   document.getElementById("content").innerHTML = htmlInner
   for (let i = 0; i < indexResponse.length; i++) {
