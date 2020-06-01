@@ -2,6 +2,7 @@ import { site_url, owner, useAPI, repo_name, docs } from "./setup.js"
 var converter = new showdown.Converter();
 var otherResponse = Array()
 var html
+var tempVariable
 
 function get(name) {
     if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
@@ -23,7 +24,8 @@ $(document).ready(async function () {
             var parser = new DOMParser();
             var doc = parser.parseFromString(html, 'text/html');
             console.log(parser)
-            console.log(doc)
+            tempVariable = doc
+            console.log(tempVariable)
             console.log(doc.querySelectorAll("span[itemprop='about']")[0].innerText)
             // Get the data
             let tempName = {
