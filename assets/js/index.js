@@ -160,7 +160,13 @@ $(document).ready(async function () {
     indexResponse = await fetch(`https://api.github.com/users/${owner}/repos`); // Using github API
     indexResponse = await indexResponse.json();
   } else {
-    await fetch('https://cors-anywhere.herokuapp.com/' + `https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
+    // Note at the time of making this a lot of the common CORS proxies are unstable however here are a list of the ones that are sometimes working:
+    // https://api.allorigins.win/raw?url=
+    // https://cors-anywhere.herokuapp.com/
+    // https://thingproxy.freeboard.io/fetch/
+    // https://test.cors.workers.dev/
+    // https://yacdn.org/proxy/
+    await fetch('https://api.allorigins.win/raw?url=' + `https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
       // The API call was successful!
       return res.text();
     }).then(function (html) {
