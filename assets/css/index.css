@@ -99,7 +99,7 @@
 	}
 	.hori-selector .left,
 	.hori-selector .right{
-		right: 10px;
+		right: 0px;
 		overflow: hidden;
 	}
 	.hori-selector .left{

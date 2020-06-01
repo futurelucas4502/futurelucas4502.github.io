@@ -46,7 +46,7 @@ function init(href) { // Initial animation of hori-selector
       "top": itemPosNewAnimTop.top + "px",
       "left": itemPosNewAnimLeft.left + "px",
       "height": (activeWidthNewAnimHeight - 10) + "px",
-      "width": activeWidthNewAnimWidth + "px"
+      "width": (activeWidthNewAnimWidth - 10) + "px"
     });
   }
   setTimeout(function () { navRightCut(); }, 275)
