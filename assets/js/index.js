@@ -95,8 +95,8 @@ $(function () {
     };
 
     $(window).bind('popstate', function () { // Run on forward or back pressed
-      _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
-      if (location.href.split("?")[1] != undefined) _link += ("?" + location.href.split("?")[1]); // Add the page request
+      var _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
+      if (location.href.split("?")[1] != undefined) _link += ("?" + location.href.split("?")[1]); // Adds the page request e.g. adds on ?page=management_console
       if (_link == "" || _link == "index") {
         _link = "index.html" // Adds support for going back to just site_URL
       }
