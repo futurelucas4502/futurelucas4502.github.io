@@ -49,6 +49,11 @@ async function otherReady(name) {
         otherResponse[name] = data;
     });
     html = converter.makeHtml(otherResponse[name]);
+    var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = `https://raw.githubusercontent.com/${owner}/${name}/master/docs/favicon.ico`;
+    document.getElementsByTagName('head')[0].appendChild(link);
     document.getElementById("content").innerHTML = html
     document.getElementsByClassName("project-name")[0].textContent = document.getElementsByTagName("h1")[1].innerText
     document.getElementsByClassName("project-tagline")[0].textContent = otherResponse[0]["description"]
