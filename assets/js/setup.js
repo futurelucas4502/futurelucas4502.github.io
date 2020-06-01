@@ -28,7 +28,7 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 8 variables needed
 4. Save and commit your changes to setup.js and your done! (Yes its as easy as that)
 
-**Note**: It may take up to 20 minutes for the site to appear live after dollowing these steps.
+**Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
 ## Further customisation:
 
