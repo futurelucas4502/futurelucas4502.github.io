@@ -67,11 +67,26 @@ $(".navbar-toggler").click(function () {
 
 $(function () {
   if (Modernizr.history) { // Check if history pushing is enabled in this browser its 2020 so this probably isnt nessecary but just in case
-    $("nav").delegate("a", "click", function (e) { // The code that executes when link pressed
+    $("nav").on("click", "a", function (e) { // The code that executes when link pressed
+      e.preventDefault(); // Cancel redirection to prevent page loading like normal
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown") {
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
+      try {
+        var _link = ($(this).attr("href")).trim();
+        history.pushState(null, null, _link); // Add link to browser history
+        loadContent(_link); // Run custom load instead of redirect
+      } catch (e) {
+        console.log(e)
+      }
+    });
+
+    $(document).on("click", ".viewBtn", function (e) { // The code that executes when link pressed
       e.preventDefault(); // Cancel redirection to prevent page loading like normal
+      console.log("run")
+      if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown") {
+        $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
+      }
       try {
         var _link = ($(this).attr("href")).trim();
         history.pushState(null, null, _link); // Add link to browser history
@@ -221,7 +236,7 @@ async function indexReady() {
           <h5 class="card-title">${name}</h5>
           <p class="card-text">${indexResponse[i]["description"]}</p>
           <div class="vertical">
-            <a style="display: block!important;margin-bottom:10px" href="index.html?page=${indexResponse[i]["name"]}" class="btn btn-primary">View</a>
+            <a style="display: block!important;margin-bottom:10px" href="index.html?page=${indexResponse[i]["name"]}" class="viewBtn btn btn-primary">View</a>
             <a style="display: block!important;margin-bottom:10px" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
             <a style="display: block!important;" href="${site_url}/docs/index.html?docs=${indexResponse[i]["name"]}" class="btn btn-primary">View Documentation</a>
           </div>
