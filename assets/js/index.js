@@ -69,6 +69,7 @@ $(function () {
       }
       try {
         var _link = ($(this).attr("href")).trim();
+        if(_link == undefined || _link == null || _link == "")return
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
       } catch (e) {
@@ -154,7 +155,10 @@ $(document).ready(async function () {
   link.href = `/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
   document.getElementsByTagName('head')[0].appendChild(link);
 
-}).catch(error => console.log("An error occured setting up the theme header. The site will still work without this however it may flicker slightly when you select view on a repo"))
+}).catch(function(error){
+  document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
+  console.log(error)
+})
   var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
@@ -188,7 +192,10 @@ $(document).ready(async function () {
         }
         indexResponse.push(tempName)
       }
-    }).catch(error => document.body.innerHTML = "An error occured if you are using safari on mobile or IE this site wont work.<br>If not try again later or open an issue on github.")
+    }).catch(function(error){
+      document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
+      console.log(error)
+  })
   }
   if (document.location.href == `${site_url}/index.html` || document.location.href == `${site_url}/index` || document.location.href == `${site_url}/` || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/") {
     indexReady()
@@ -282,7 +289,10 @@ async function otherReady(name) {
         return res.text();
       }).then(data => {
         otherResponse[name] = data;
-      }).catch(error => document.body.innerHTML = "An error occured if you are using safari on mobile or IE this site wont work.<br>If not try again later or open an issue on github.")
+      }).catch(function(error){
+        document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
+        console.log(error)
+    })
     }
     htmlInner = converter.makeHtml(otherResponse[name]);
   }

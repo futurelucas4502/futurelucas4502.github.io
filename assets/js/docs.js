@@ -21,7 +21,10 @@ async function getData(ownerVar, nameVar){
         "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText // THIS IS THE LINE CAUSING THE ERROR ON SAFARI MOBILE
     }
     otherResponse.push(tempName)
-}).catch(error => document.body.innerHTML = "An error occured if you are using safari on mobile or IE this site wont work.<br>If not try again later or open an issue on github.")
+}).catch(function(error){
+    document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
+    console.log(error)
+})
 }
 
 $(document).ready(async function () {
