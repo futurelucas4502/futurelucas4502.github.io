@@ -67,9 +67,9 @@ $(function () {
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown") {
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
+      if($(this).attr("href") == undefined || $(this).attr("href") == null || $(this).attr("href") == "")return
       try {
         var _link = ($(this).attr("href")).trim();
-        if(_link == undefined || _link == null || _link == "")return
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
       } catch (e) {
