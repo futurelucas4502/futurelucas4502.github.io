@@ -8,17 +8,18 @@
     <link rel="preload" href="./assets/css/index.css" as="style">
     <script src='./assets/js/modernizr.js'></script>
 </head>
-<css>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
-    <link rel="stylesheet" href="./assets/css/index.css">
-</css>
 <body>
+    <css>
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+        <link rel="stylesheet" href="./assets/css/index.css">
+    </css>
     <div class="loader"></div>
+    <div id="IE">This site will not work in IE please use a newer browser!</div>
     <div id="no-script" style="display: none;">This page will not work without javascript please enable it and try again!</div>
     <page style="display:none">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-mainbg sticky-top" style="padding:0px">
-            <img id="embelem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="margin-left: 1rem;" class="embelem">
+            <img id="embelem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="margin-left: 1rem;" class="embelem" />
             <a title="" id="owner" class="sticky-top navbar-brand abs-center-x"></a>
             <button style="z-index:1;" class="navbar-toggler collapsed" id="toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -68,7 +69,7 @@
                     maintained by Lucas Wilson (futurelucas4502).</h6>
               </div>
         </section>
-    <page>
+    </page>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
@@ -78,6 +79,11 @@
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="./assets/js/showdown.min.js"></script>
     <script type="module" src="./assets/js/index.js"></script>
+    <script>
+        if (/MSIE|Trident/.test(window.navigator.userAgent)) {
+            document.getElementById("IE").style.display = "block";
+        }
+    </script>
 </body>
 
 </html>
