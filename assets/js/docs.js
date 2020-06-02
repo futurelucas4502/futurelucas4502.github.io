@@ -1,4 +1,4 @@
-import { site_url, owner, useAPI, repo_name, docs } from "./setup.js"
+import { site_url, owner, useAPI, cors, repo_name, docs } from "./setup.js"
 var converter = new showdown.Converter();
 var otherResponse = Array()
 var html
@@ -9,7 +9,7 @@ function get(name) {
 }
 
 async function getData(ownerVar, nameVar){
-    await fetch('https://api.allorigins.win/raw?url=' + `https://github.com/${ownerVar}/${nameVar}`).then(res => { // Not using github API
+    await fetch(cors + `https://github.com/${ownerVar}/${nameVar}`).then(res => { // Not using github API
     // The API call was successful!
     return res.text();
 }).then(function (html) {

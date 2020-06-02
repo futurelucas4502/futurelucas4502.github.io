@@ -1,4 +1,4 @@
-import { site_url, owner, useAPI, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name } from "./setup.js"
+import { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name } from "./setup.js"
 
 // Start Navigation
 var mobilehref
@@ -140,7 +140,7 @@ function navRightCut() {
 // Start Basic Page Setup
 let indexResponse = new Array()
 $(document).ready(async function () {
-  await fetch('https://api.allorigins.win/raw?url=' + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
+  await fetch(cors + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
   // The API call was successful!
   return res.text();
 }).then(function (html) {
@@ -171,13 +171,7 @@ $(document).ready(async function () {
     indexResponse = await fetch(`https://api.github.com/users/${owner}/repos`); // Using github API
     indexResponse = await indexResponse.json();
   } else {
-    // Note at the time of making this a lot of the common CORS proxies are unstable however here are a list of the ones that are sometimes working:
-    // https://api.allorigins.win/raw?url=
-    // https://cors-anywhere.herokuapp.com/
-    // https://thingproxy.freeboard.io/fetch/
-    // https://test.cors.workers.dev/
-    // https://yacdn.org/proxy/
-    await fetch('https://api.allorigins.win/raw?url=' + `https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
+    await fetch(cors + `https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
       // The API call was successful!
       return res.text();
     }).then(function (html) {
