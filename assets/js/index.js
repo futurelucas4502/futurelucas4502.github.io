@@ -158,7 +158,7 @@ $(document).ready(async function () {
   // Get the data
   var link = document.createElement('link');
   link.rel = 'stylesheet';
-  link.href = `/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
+  link.href = `${site_url}/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
   document.getElementsByTagName('head')[0].appendChild(link);
 
 }).catch(function(error){
