@@ -1,7 +1,7 @@
 # futurelucas4502.github.io
 
 ## About:
-This is a completely dynamic single page website which can be forked and used by any github account holder to display all their public github repositorys in a clean and cool way.
+This is a completely dynamic single page website which can be used by any github account holder to display all their public github repositorys in a clean and cool way all you need to do is follow the simple setup guide below.
 
 ## Setup:
 
