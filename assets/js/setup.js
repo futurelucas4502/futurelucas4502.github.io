@@ -56,8 +56,8 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 
 ## Setup:
 
-1. Fork the repo
-2. Go into the setting and change the name to your-username.github.io
+1. Go to [here](https://github.com/futurelucas4502/futurelucas4502.github.io) and press the "Use this template" button
+2. Then name the repo "your-username.github.io", add a description and click "Create repository from template"
 3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 variables needed
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
 5. To set favicons for documentation make sure to include a favicon.ico in the docs folder of all your repositories
