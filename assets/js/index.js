@@ -259,7 +259,7 @@ async function indexReady() {
   }
   // Animate loader off screen
   document.getElementsByTagName("page")[0].style.display = "block"
-  setTimeout(function () { init(); }, 500);
+  setTimeout(function () { init(); }, 600);
   $(".loader").fadeOut("slow");
 }
 // End Basic Page Setup
@@ -305,7 +305,7 @@ async function otherReady(name) {
 </footer>`);
   // Animate loader off screen
   document.getElementsByTagName("page")[0].style.display = "block"
-  setTimeout(function () { init(); }, 200);
+  setTimeout(function () { init(); }, 600);
   $(".loader").fadeOut("slow");
 }
 // End Other Pages Loading
