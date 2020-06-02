@@ -267,7 +267,7 @@ async function indexReady() {
 // Start Other Pages Loading
 var otherResponse = Array()
 async function otherReady(name) {
-  document.title = `${owner}'s Work || ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
+  document.title = `${owner}'s Work | ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
   var html
   var htmlInner
   var description
