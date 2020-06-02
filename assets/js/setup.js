@@ -13,10 +13,6 @@
 // Next you need to have a readme.md file as this is used to load the page content into
 // the site
 
-// Next if you want photos on the cards instead of 404 errors then you should place an
-// image called screenshot.png in your all of your repo's master branch in the following path:
-// /assets/screenshot.png
-
 // Finally you must set the variables below to what you want them as:
 
 var site_url = "https://futurelucas4502.github.io" // URL to index of your site
@@ -61,7 +57,8 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 variables needed
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
 5. To set favicons for documentation make sure to include a favicon.ico in the docs folder of all your repositories
-6. Save and commit your changes and your done! (Yes its as easy as that)
+6. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
+7. Save and commit your changes and your done! (Yes its as easy as that)
 
 **Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
