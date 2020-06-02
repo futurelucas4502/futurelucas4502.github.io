@@ -1,3 +1,19 @@
+/* Start Loader Styling */
+
+.no-js .loader { display: none;  }
+.js page { display: none }
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images/loader.gif) center no-repeat #fff;
+}
+
+/* End Loader Styling */
+
 /* Start Navigation Styling */
 
 * {
