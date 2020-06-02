@@ -11,3 +11,8 @@ This is a completely dynamic single page website which can be forked and used by
 
 [https://futurelucas4502.github.io](https://futurelucas4502.github.io)
 
+## Compatability:
+
+This project has been confirmed to run on both desktop and mobile in: chrome, safari, edge and firefox.
+
+IE is obviously not supported and never will as it doesnt support async.
