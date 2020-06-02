@@ -53,27 +53,27 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 ## Setup:
 
 1. Go to [here](https://github.com/futurelucas4502/futurelucas4502.github.io) and press the "Use this template" button
-<br/>
+<br><br>
 2. Then name the repo "your-username.github.io", add a description and click "Create repository from template"
-<br/>
+<br><br>
 3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 variables needed 
-<br/>
+<br><br>
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
-<br/>
+<br><br>
 5. To set favicons for documentation make sure to include a favicon.ico in the docs folder of all your repositories
-<br/>
+<br><br>
 6. To set up what the app looks like when saved to the homescreen on iOS, Android and Windows etc go to [here](https://realfavicongenerator.net/) if you don't my icon and name etc will be used so this is highly recommended!
-<br/>
+<br><br>
 7. Then when you download the zip file delete "favicon.ico", "favicon-16x16.png" and "favicon-32x32.png" as we are using your github profile image as the favicon (Also after you've downloaded the zip don't follow the guide it gives you saying what tags to include!!)
-<br/>
+<br><br>
 8. Then copy the remaining files to the root of the site and overwrite the existing one's
-<br/>
+<br><br>
 9. Then open the "index.html" file edit the values for "application-name" and "apple-mobile-web-app-title" to the same as what you used in the generator
-<br/>
+<br><br>
 10. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
-<br/>
+<br><br>
 11. Save and commit your changes and your done! (Yes its as easy as that)
-<br/>
+
 **Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
 ## Further customisation:
