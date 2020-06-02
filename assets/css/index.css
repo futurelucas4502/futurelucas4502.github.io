@@ -31,6 +31,14 @@
 	text-align: center;
 }
 
+#err {
+	display:none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
 /* End Loader Styling */
 
 /* Start Navigation Styling */

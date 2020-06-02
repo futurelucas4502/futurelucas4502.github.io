@@ -141,6 +141,9 @@ function navRightCut() {
 // Start Basic Page Setup
 let indexResponse = new Array()
 $(document).ready(async function () {
+  if (document.location.href.includes("?page=") == false) {
+    window.location.replace(`${site_url}`); // Load /docs = redirect to main page
+  }
   await fetch(cors + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
   // The API call was successful!
   return res.text();
@@ -285,6 +288,11 @@ async function otherReady(name) {
   } else {
     if (otherResponse[name] == undefined) { // Method where I fetch the file contents of the readme manually
       await fetch(`https://raw.githubusercontent.com/${owner}/${name}/master/README.md`).then(res => {
+        if(res.status == 404){
+          document.getElementById("err").style.display = "block"
+          document.getElementById("404home").href = site_url
+          $(".loader").fadeOut("slow");
+        }
         return res.text();
       }).then(data => {
         otherResponse[name] = data;
