@@ -279,6 +279,9 @@ async function indexReady() {
 // Start Other Pages Loading
 var otherResponse = Array()
 async function otherReady(name) {
+  if (document.location.href.includes("?page=") == false) {
+    window.location.replace(`${site_url}`); // Load /docs = redirect to main page
+  }
   document.title = `${owner}'s Work | ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
   var html
   var htmlInner
