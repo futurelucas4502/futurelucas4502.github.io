@@ -179,7 +179,6 @@ $(document).ready(async function () {
       // The API call was successful!
       return res.text();
     }).then(function (html) {
-
       // Convert the HTML string into a document object
       var parser = new DOMParser();
       var doc = parser.parseFromString(html, 'text/html');
