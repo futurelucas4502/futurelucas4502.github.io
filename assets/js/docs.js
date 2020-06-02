@@ -16,9 +16,13 @@ async function getData(ownerVar, nameVar){
     // Convert the HTML string into a document object
     var parser = new DOMParser();
     var doc = parser.parseFromString(html, 'text/html');
+    if(doc.querySelectorAll("span[itemprop='about']")[0] == undefined){
+        document.getElementById("content").innerHTML = "404: Not Found"
+        return
+    }
     // Get the data
     let tempName = {
-        "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText // THIS IS THE LINE CAUSING THE ERROR ON SAFARI MOBILE
+        "description": doc.querySelectorAll("span[itemprop='about']")[0].innerText
     }
     otherResponse.push(tempName)
 }).catch(function(error){
@@ -28,7 +32,7 @@ async function getData(ownerVar, nameVar){
 }
 
 $(document).ready(async function () {
-    if (document.location.href == `${site_url}/docs/index.html` || document.location.href == `${site_url}/docs/index` || document.location.href == `${site_url}/docs/` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index" || document.location.href == "http://localhost/futurelucas4502.github.io/docs/") {
+    if (document.location.href.includes("?docs=") == false) {
         window.location.replace(`${site_url}`); // Load /docs = redirect to main page
     } else if(document.location.href == `${site_url}/docs/index.html?docs=${repo_name}` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/testindex.html?docs=futurelucas4502.github.io") {
         document.getElementById("content").innerHTML = `<h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
