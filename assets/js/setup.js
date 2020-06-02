@@ -57,8 +57,9 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 variables needed
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
 5. To set favicons for documentation make sure to include a favicon.ico in the docs folder of all your repositories
-6. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
-7. Save and commit your changes and your done! (Yes its as easy as that)
+6. To set a favicon for this site that works on all devices e.g. apple touch bar etc go to [here](https://realfavicongenerator.net/) if you don't my icon and name etc will be used so this is highly recommended!
+7. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
+8. Save and commit your changes and your done! (Yes its as easy as that)
 
 **Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
