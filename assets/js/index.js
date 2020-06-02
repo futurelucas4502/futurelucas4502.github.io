@@ -146,6 +146,12 @@ $(document).ready(async function () {
   }
   await fetch(cors + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
   // The API call was successful!
+  if(res.status == 404){
+    document.getElementById("err").style.display = "block"
+    document.getElementById("404home").href = site_url
+    $(".loader").fadeOut("slow")
+    return
+  }
   return res.text();
 }).then(function (html) {
 
@@ -180,6 +186,12 @@ $(document).ready(async function () {
   } else {
     await fetch(cors + `https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
       // The API call was successful!
+      if(res.status == 404){
+        document.getElementById("err").style.display = "block"
+        document.getElementById("404home").href = site_url
+        $(".loader").fadeOut("slow")
+        return
+      }
       return res.text();
     }).then(function (html) {
       // Convert the HTML string into a document object
@@ -291,7 +303,8 @@ async function otherReady(name) {
         if(res.status == 404){
           document.getElementById("err").style.display = "block"
           document.getElementById("404home").href = site_url
-          $(".loader").fadeOut("slow");
+          $(".loader").fadeOut("slow")
+          return
         }
         return res.text();
       }).then(data => {

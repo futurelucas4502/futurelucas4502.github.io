@@ -11,6 +11,12 @@ function get(name) {
 async function getData(ownerVar, nameVar){
     await fetch(cors + `https://github.com/${ownerVar}/${nameVar}`).then(res => { // Not using github API
     // The API call was successful!
+    if(res.status == 404){
+        document.getElementById("err").style.display = "block"
+        document.getElementById("404home").href = site_url
+        $(".loader").fadeOut("slow")
+        return
+      }
     return res.text();
 }).then(function (html) {
     // Convert the HTML string into a document object
