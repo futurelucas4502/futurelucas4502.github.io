@@ -1,11 +1,11 @@
+document.getElementById("github-view").style.display = "none"
+document.getElementById("download-zip").style.display = "none"
+document.getElementById("download-tar").style.display = "none"
+
 import { site_url, owner, useAPI, cors, repo_name, docs } from "./setup.js"
 var converter = new showdown.Converter();
 var otherResponse = Array()
 var html
-
-document.getElementById("github-view").style.display = "none"
-document.getElementById("download-zip").style.display = "none"
-document.getElementById("download-tar").style.display = "none"
 
 function get(name) {
     if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
