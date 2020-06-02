@@ -2,6 +2,7 @@ import { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fi
 
 // Start Navigation
 var mobilehref
+var first = true
 var converter = new showdown.Converter();
 var closeNavMobile = window.matchMedia("(max-width: 991px)")
 closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on state changes
@@ -56,7 +57,6 @@ $(window).on('resize', function () {
   setTimeout(function () { init(); }, 500); // Runs init when page resized to ensure its in the correct place
 });
 $(".navbar-toggler").click(function () {
-  console.log("toggler clicked")
   setTimeout(function () { init(); }, 200);
 });
 
@@ -234,7 +234,20 @@ $(document).ready(async function () {
       $('#navbarSupportedContent ul li a[href="' + decodeURI("index.html?" + location.href.split("?")[1]) + '"]').parent().addClass("active")
     }
   }
+  firstLoad()
 })
+
+function firstLoad(){
+  if(first){
+    // Animate loader off screen
+    document.getElementsByTagName("page")[0].style.display = "block"
+    setTimeout(function () { init(); }, 600);
+    $(".loader").fadeOut("slow");
+    first = false
+  }
+}
+
+
 async function indexReady() {
   document.title = `${owner}'s Work`
   document.getElementById("main-content").innerHTML = `<div style="margin:20px 0px" class="text-center">
@@ -269,10 +282,7 @@ async function indexReady() {
     `
     document.getElementById(indexResponse[i]["name"]).style.backgroundImage = `url(https://raw.githubusercontent.com/${owner}/${indexResponse[i]['name']}/master/assets/screenshot.png),url(./assets/images/404.png)`
   }
-  // Animate loader off screen
-  document.getElementsByTagName("page")[0].style.display = "block"
-  setTimeout(function () { init(); }, 600);
-  $(".loader").fadeOut("slow");
+  firstLoad()
 }
 // End Basic Page Setup
 
@@ -330,9 +340,6 @@ async function otherReady(name) {
   document.getElementById("github-view").href = `https://github.com/${owner}/${name}`
   document.getElementById("download-zip").href = `https://github.com/${owner}/${name}/zipball/master`
   document.getElementById("download-tar").href = `https://github.com/${owner}/${name}/tarball/master`
-  // Animate loader off screen
-  document.getElementsByTagName("page")[0].style.display = "block"
-  setTimeout(function () { init(); }, 600);
-  $(".loader").fadeOut("slow");
+  firstLoad()
 }
 // End Other Pages Loading
