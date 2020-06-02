@@ -141,9 +141,6 @@ function navRightCut() {
 // Start Basic Page Setup
 let indexResponse = new Array()
 $(document).ready(async function () {
-  if (document.location.href.includes("?page=") == false) {
-    window.location.replace(`${site_url}`); // Load /docs = redirect to main page
-  }
   await fetch(cors + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
   // The API call was successful!
   if(res.status == 404){
