@@ -1,7 +1,4 @@
 /* Start Loader Styling */
-
-.no-js .loader { display: none;  }
-.js page { display: none }
 .loader {
 	position: fixed;
 	left: 0px;
@@ -10,6 +7,17 @@
 	height: 100%;
 	z-index: 9999;
 	background: url(../images/loader.gif) center no-repeat #fff;
+}
+
+.no-js #no-script {
+	display: block!important;
+	position: fixed;
+	bottom:0;
+	z-index: 9999;
+	color:black;
+	margin: auto;
+	width: 100%;
+	text-align: center;
 }
 
 /* End Loader Styling */

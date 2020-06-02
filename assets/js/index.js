@@ -230,9 +230,6 @@ async function indexReady() {
   <h6 class="text-muted">Only my Open-Source work and projects are shown as some work needs to be kept
       Closed-Source.</h6>
   <div class="container">
-      <h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
-              style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
-              aria-hidden="true"></span>Loading...</h4>
       <div id="content">
         <div class="row" id="cards"></div>
       </div>
@@ -242,7 +239,6 @@ async function indexReady() {
   for (let i = 0; i < indexResponse.length; i++) {
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-    document.getElementById("loading").style.display = "none"
     document.getElementById("cards").innerHTML += `
     <div class="col-sm d-flex justify-content-center">
       <div class="card" style="width: 18rem;margin-top:20px">
@@ -263,7 +259,7 @@ async function indexReady() {
   }
   // Animate loader off screen
   document.getElementsByTagName("page")[0].style.display = "block"
-  setTimeout(function () { init(); }, 200);
+  setTimeout(function () { init(); }, 500);
   $(".loader").fadeOut("slow");
 }
 // End Basic Page Setup
