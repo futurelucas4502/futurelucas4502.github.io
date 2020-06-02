@@ -3,6 +3,10 @@ var converter = new showdown.Converter();
 var otherResponse = Array()
 var html
 
+document.getElementById("github-view").style.display = "none"
+document.getElementById("download-zip").style.display = "none"
+document.getElementById("download-tar").style.display = "none"
+
 function get(name) {
     if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
         return decodeURIComponent(name[1]);
