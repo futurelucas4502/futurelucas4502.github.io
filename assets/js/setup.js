@@ -48,7 +48,7 @@ var repo_name = "futurelucas4502.github.io" // Name of the repo your website is 
 var docs = `
 # futurelucas4502.github.io - Documentation:
 
-Welcome this is a little project I made mostly for myself but the idea is that anyone can fork this and use it on their own github pages or jekyll site (may need extra config for jekyll).
+Welcome this is a little project I made mostly for myself but the idea is that anyone can take this and use it on their own github pages site.
 
 ## Setup:
 
@@ -57,9 +57,12 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 variables needed
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
 5. To set favicons for documentation make sure to include a favicon.ico in the docs folder of all your repositories
-6. To set a favicon for this site that works on all devices e.g. apple touch bar etc go to [here](https://realfavicongenerator.net/) if you don't my icon and name etc will be used so this is highly recommended!
-7. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
-8. Save and commit your changes and your done! (Yes its as easy as that)
+6. To set up what the app looks like when saved to the homescreen on iOS, Android and Windows etc go to [here](https://realfavicongenerator.net/) if you don't my icon and name etc will be used so this is highly recommended!
+7. Then when you download the zip file delete "favicon.ico", "favicon-16x16.png" and "favicon-32x32.png" as we are using your github profile image as the favicon (Also after you've downloaded the zip don't follow the guide it gives you saying what tags to include!!)
+8. Then copy the remaining files to the root of the site and overwrite the existing one's
+9. Then open the "index.html" file edit the values for "application-name" and "apple-mobile-web-app-title" to the same as what you used in the generator
+10. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
+11. Save and commit your changes and your done! (Yes its as easy as that)
 
 **Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
