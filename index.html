@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1, user-scalable=no">
     <link rel="preload" href="./assets/css/bootstrap.min.css" as="style">
     <link rel="preload" href="./assets/css/index.css" as="style">
     <script src='./assets/js/modernizr.js'></script>
@@ -16,17 +16,37 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#5161ce">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link href="splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <link href="splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="splashscreens/iphone5_splash.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphone6_splash.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphoneplus_splash.png"
+        media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphonex_splash.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphonexr_splash.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/iphonexsmax_splash.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipad_splash.png"
+        media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipadpro1_splash.png"
+        media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipadpro3_splash.png"
+        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <link href="splashscreens/ipadpro2_splash.png"
+        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 
 <body ontouchstart="">
@@ -35,74 +55,76 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
         <link rel="stylesheet" href="./assets/css/index.css">
     </css>
-    <div class="loader"></div>
-    <div id="IE">This site will not work in IE please use a newer browser!</div>
-    <div id="err">
-        <div class="row">
-            <a>404: Page Not Found</a>
+    <div style="background-color: white;height: 100%;width: 100%;padding-bottom: 1px;">
+        <div class="loader"></div>
+        <div id="IE">This site will not work in IE please use a newer browser!</div>
+        <div id="err">
+            <div class="row">
+                <a>404: Page Not Found</a>
+            </div>
+            <div style="margin-top:10px" class="row">
+                <a style="margin:auto;color:white;" id="404home" class="btn btn-primary">Go Home?</a>
+            </div>
         </div>
-        <div style="margin-top:10px" class="row">
-            <a style="margin:auto;color:white;" id="404home" class="btn btn-primary">Go Home?</a>
-        </div>
-    </div>
-    <div id="no-script" style="display: none;">This page will not work without javascript please enable it and try
-        again!</div>
-    <page style="display:none">
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-mainbg sticky-top" style="padding:0px">
-            <img id="embelem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style="margin-left: 1rem;" class="embelem" />
-            <a title="" id="owner" class="sticky-top navbar-brand abs-center-x"></a>
-            <button style="z-index:1;" class="navbar-toggler collapsed" id="toggler" type="button"
-                data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <div class="hori-selector" style="top: 0px;left: 100px;height: 52px;width: 105px;">
-                        <div class="left"></div>
-                        <div id="right" class="right"></div>
-                    </div>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html"><i class="fas fa-home"></i>Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="fixedName1" class="nav-link"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="fixedName2" class="nav-link"></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            More
-                        </a>
-                        <div class="dropdown-menu" id="navDropdownInner" style="right: 0;left:auto"
-                            aria-labelledby="navbarDropdown">
-
+        <div id="no-script" style="display: none;">This page will not work without javascript please enable it and try
+            again!</div>
+        <page style="display:none">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-mainbg sticky-top" style="padding:0px">
+                <img id="embelem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="margin-left: 1rem;" class="embelem" />
+                <a title="" id="owner" class="sticky-top navbar-brand abs-center-x"></a>
+                <button style="z-index:1;" class="navbar-toggler collapsed" id="toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <div class="hori-selector" style="top: 0px;left: 100px;height: 52px;width: 105px;">
+                            <div class="left"></div>
+                            <div id="right" class="right"></div>
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <section id="main-content">
-            <div style="margin:20px 0px" class="text-center">
-                <h1>Welcome to my work and personal projects!</h1>
-                <h6 class="text-muted">Only my Open-Source work and projects are shown as some work needs to be kept
-                    Closed-Source.</h6>
-                <div class="container">
-                    <h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
-                            style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
-                            aria-hidden="true"></span>Loading...</h4>
-                    <div id="content">
-                        <div class="row" id="cards"></div>
-                    </div>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html"><i class="fas fa-home"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="fixedName1" class="nav-link"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="fixedName2" class="nav-link"></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                More
+                            </a>
+                            <div class="dropdown-menu" id="navDropdownInner" style="right: 0;left:auto"
+                                aria-labelledby="navbarDropdown">
+
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
-                    maintained by Lucas Wilson (futurelucas4502).</h6>
-            </div>
-        </section>
-    </page>
+            </nav>
+            <section id="main-content">
+                <div style="margin:20px 0px" class="text-center">
+                    <h1>Welcome to my work and personal projects!</h1>
+                    <h6 class="text-muted">Only my Open-Source work and projects are shown as some work needs to be kept
+                        Closed-Source.</h6>
+                    <div class="container">
+                        <h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
+                                style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
+                                aria-hidden="true"></span>Loading...</h4>
+                        <div id="content">
+                            <div class="row" id="cards"></div>
+                        </div>
+                    </div>
+                    <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned and
+                        maintained by Lucas Wilson (futurelucas4502).</h6>
+                </div>
+            </section>
+        </page>
+    </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <link rel="stylesheet" href="./assets/css/index.css">
     <script src="./assets/js/jquery-3.5.1.min.js"></script>
