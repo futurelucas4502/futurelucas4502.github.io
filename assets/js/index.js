@@ -4,14 +4,9 @@ import { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fi
 
 /* Put code here */
 window.addEventListener("beforeinstallprompt", event => {
-  console.log("👍", "beforeinstallprompt", event);
   if (!event) {
     return;
   }
-  event.prompt();
-  event.userChoice.then(result => {
-    event = null;
-  });
 });
 
 /* Only register a service worker if it's supported */
