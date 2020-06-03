@@ -2,7 +2,6 @@ import { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fi
 
 // Installable popups start
 
-/* Put code here */
 window.addEventListener("beforeinstallprompt", event => {
   if (!event) {
     return;
