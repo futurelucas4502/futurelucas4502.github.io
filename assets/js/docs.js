@@ -32,7 +32,7 @@ async function getData(ownerVar, nameVar){
     }
     otherResponse.push(tempName)
 }).catch(function(error){
-    document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
+    document.body.innerHTML = "An error occured please check your internet connection and try again.<br><br>If it fails to load for after trying a few times with an internet connection the API may be down sorry for any inconvenience.<br><br><br>If the site hasnt started working again within an hour add a new issue <a href='https://github.com/futurelucas4502/futurelucas4502.github.io/issues'>here</a>"
     console.log(error)
 })
 }
