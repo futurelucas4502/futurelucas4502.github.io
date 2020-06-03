@@ -67,12 +67,18 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 7. Then when you download the zip file delete "favicon.ico", "favicon-16x16.png" and "favicon-32x32.png" as we are using your github profile image as the favicon (Also after you've downloaded the zip don't follow the guide it gives you saying what tags to include!!)
 <br><br>
 8. Then copy the remaining files to the root of the site and overwrite the existing one's
+**Note**: Also do not insert into the head the code it tells you to as its already done and we will be configuring it later.
+9. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
 <br><br>
-9. Then open the "index.html" file edit the values for "application-name" and "apple-mobile-web-app-title" to the same as what you used in the generator
+10. Now in order to set the app up for use as a PWA (Progressive web app) that can be "installed" visit [here](https://appsco.pe/developer/splash-screens) and upload your image and download the zip file generated
 <br><br>
-10. Next if you want photos of the project on the cards instead of 404 errors then you should place an image called screenshot.png in your all of your repo's master branch in the following path: /assets/screenshot.png
+11. Now delete the splashscreens folder already in the repo and place the one extracted from the zip in the root of the site
 <br><br>
-11. Save and commit your changes and your done! (Yes its as easy as that)
+12. Now delete lines 29 to 58 in index.html and copy the html tags the site generates to the index.html file
+<br><br>
+13. Next set all the info from line 7 to 19 to what you want it as
+<br><br>
+14. Save and commit your changes and your done!
 
 **Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
