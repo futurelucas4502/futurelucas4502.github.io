@@ -256,8 +256,8 @@ function firstLoad() {
   if (first) {
     // Animate loader off screen
     document.getElementsByTagName("page")[0].style.display = "block"
-    setTimeout(function () { init(); }, 600);
-    $(".loader").fadeOut("slow");
+    setTimeout(function () { init(); }, 1000);
+    setTimeout(function () { $(".loader").fadeOut("slow") }, 400);
     first = false
   }
 }
