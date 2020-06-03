@@ -57,7 +57,7 @@ body {
 
 /* Start Navigation Styling */
 nav{
-	padding-top: env(safe-area-inset-left);
+	padding-top: env(safe-area-inset-top);
 }
 #toggler {
 	margin-right: 10px;
