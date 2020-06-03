@@ -287,8 +287,8 @@ async function indexReady() {
           <h5 class="card-title">${name}</h5>
           <p class="card-text">${indexResponse[i]["description"]}</p>
           <div class="vertical">
-            <a style="display: block!important;margin-bottom:10px" href="index.html?page=${indexResponse[i]["name"]}" class="viewBtn btn btn-primary">View</a>
-            <a style="display: block!important;margin-bottom:10px" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
+            <a style="display: block!important;" href="index.html?page=${indexResponse[i]["name"]}" class="viewBtn btn btn-primary">View</a>
+            <a style="display: block!important;" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
             <a style="display: block!important;" href="${site_url}/docs/index.html?docs=${indexResponse[i]["name"]}" class="btn btn-primary">View Documentation</a>
           </div>
         </div>
