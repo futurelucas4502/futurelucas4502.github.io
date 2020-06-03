@@ -1,5 +1,50 @@
 import { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name } from "./setup.js"
 
+// Installable popups start
+
+const divInstall = document.getElementById("installContainer");
+const butInstall = document.getElementById("butInstall");
+
+/* Put code here */
+window.addEventListener("beforeinstallprompt", event => {
+  console.log("👍", "beforeinstallprompt", event);
+  // Stash the event so it can be triggered later.
+  window.deferredPrompt = event;
+  // Remove the 'hidden' class from the install button container
+  divInstall.classList.toggle("hidden", false);
+});
+
+butInstall.addEventListener("click", () => {
+  console.log("👍", "butInstall-clicked");
+  const promptEvent = window.deferredPrompt;
+  if (!promptEvent) {
+    // The deferred prompt isn't available.
+    return;
+  }
+  // Show the install prompt.
+  promptEvent.prompt();
+  // Log the result
+  promptEvent.userChoice.then(result => {
+    console.log("👍", "userChoice", result);
+    // Reset the deferred prompt variable, since
+    // prompt() can only be called once.
+    window.deferredPrompt = null;
+    // Hide the install button.
+    divInstall.classList.toggle("hidden", true);
+  });
+});
+
+window.addEventListener("appinstalled", event => {
+  console.log("👍", "appinstalled", event);
+});
+
+/* Only register a service worker if it's supported */
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js");
+}
+
+// Installable popups end
+
 // Start Navigation
 var mobilehref
 var first = true
@@ -67,7 +112,7 @@ $(function () {
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown") {
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
-      if($(this).attr("href") == undefined || $(this).attr("href") == null || $(this).attr("href") == "")return
+      if ($(this).attr("href") == undefined || $(this).attr("href") == null || $(this).attr("href") == "") return
       try {
         var _link = ($(this).attr("href")).trim();
         history.pushState(null, null, _link); // Add link to browser history
@@ -142,29 +187,29 @@ function navRightCut() {
 let indexResponse = new Array()
 $(document).ready(async function () {
   await fetch(cors + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
-  // The API call was successful!
-  if(res.status == 404){
-    document.getElementById("err").style.display = "block"
-    document.getElementById("404home").href = site_url
-    $(".loader").fadeOut("slow")
-    return
-  }
-  return res.text();
-}).then(function (html) {
+    // The API call was successful!
+    if (res.status == 404) {
+      document.getElementById("err").style.display = "block"
+      document.getElementById("404home").href = site_url
+      $(".loader").fadeOut("slow")
+      return
+    }
+    return res.text();
+  }).then(function (html) {
 
-  // Convert the HTML string into a document object
-  var parser = new DOMParser();
-  var doc = parser.parseFromString(html, 'text/html');
-  // Get the data
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = `${site_url}/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
-  document.getElementsByTagName('head')[0].appendChild(link);
+    // Convert the HTML string into a document object
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
+    // Get the data
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${site_url}/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
+    document.getElementsByTagName('head')[0].appendChild(link);
 
-}).catch(function(error){
-  document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
-  console.log(error)
-})
+  }).catch(function (error) {
+    document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
+    console.log(error)
+  })
   var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
@@ -183,7 +228,7 @@ $(document).ready(async function () {
   } else {
     await fetch(cors + `https://github.com/${owner}?tab=repositories`).then(res => { // Not using github API
       // The API call was successful!
-      if(res.status == 404){
+      if (res.status == 404) {
         document.getElementById("err").style.display = "block"
         document.getElementById("404home").href = site_url
         $(".loader").fadeOut("slow")
@@ -203,10 +248,10 @@ $(document).ready(async function () {
         }
         indexResponse.push(tempName)
       }
-    }).catch(function(error){
+    }).catch(function (error) {
       document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
       console.log(error)
-  })
+    })
   }
   if (document.location.href == `${site_url}/index.html` || document.location.href == `${site_url}/index` || document.location.href == `${site_url}/` || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/") {
     indexReady()
@@ -237,8 +282,8 @@ $(document).ready(async function () {
   firstLoad()
 })
 
-function firstLoad(){
-  if(first){
+function firstLoad() {
+  if (first) {
     // Animate loader off screen
     document.getElementsByTagName("page")[0].style.display = "block"
     setTimeout(function () { init(); }, 600);
@@ -310,7 +355,7 @@ async function otherReady(name) {
   } else {
     if (otherResponse[name] == undefined) { // Method where I fetch the file contents of the readme manually
       await fetch(`https://raw.githubusercontent.com/${owner}/${name}/master/README.md`).then(res => {
-        if(res.status == 404){
+        if (res.status == 404) {
           document.getElementById("err").style.display = "block"
           document.getElementById("404home").href = site_url
           $(".loader").fadeOut("slow")
@@ -319,10 +364,10 @@ async function otherReady(name) {
         return res.text();
       }).then(data => {
         otherResponse[name] = data;
-      }).catch(function(error){
+      }).catch(function (error) {
         document.body.innerHTML = "An error occured please try again later or check the console for more info.<br>If it fails to load for after trying again later maybe open an issue on github so I can take a look."
         console.log(error)
-    })
+      })
     }
     htmlInner = converter.makeHtml(otherResponse[name]);
   }
