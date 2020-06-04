@@ -76,7 +76,7 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 <br><br>
 12. Now delete lines 29 to 58 in index.html and copy the html tags the site generates to the index.html file
 <br><br>
-13. Next set all the info from line 7 to 19 to what you want it as
+13. Next set all the info from line 7 to 25 to what you want it as
 <br><br>
 14. Save and commit your changes and your done!
 
