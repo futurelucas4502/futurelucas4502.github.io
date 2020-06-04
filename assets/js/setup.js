@@ -88,7 +88,7 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 
 If you want to host your site at somewhere other than your-username.github.io you can go into the repo settings and set this just make sure you change the site_url in the setup.js file!
 `
-// The documentation for the site as it can't be placed in docs/index.md as we are
+// Above is the documentation for the site as it can't be placed in docs/index.md as we are
 // already using this for other things
 
 // That's it now save and commit your changes and wait and the site will be built however this
