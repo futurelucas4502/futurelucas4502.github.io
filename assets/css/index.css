@@ -86,7 +86,8 @@ nav{
     text-decoration: none;
     font-size: 14px;
     display: block;
-    padding: 20px 20px;
+	padding: 20px 20px;
+	border-bottom: none!important;
     transition-duration:0.6s;
 	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     position: relative;
@@ -213,3 +214,9 @@ nav{
 }
 
 /* End Card Styling */
+
+/* Start Page Styling */
+a{
+	border-bottom: 1px solid #8d8df3;
+}
+/* End Page Styling */
