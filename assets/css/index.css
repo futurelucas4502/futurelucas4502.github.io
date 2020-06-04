@@ -217,8 +217,13 @@ nav{
 
 /* Start Page Styling */
 a{
-	border-bottom: 1px solid #8d8df3;
+	border-bottom: 1px solid #48b325;
 	text-decoration: none!important;
-	color: #8d8df3;
+	color: #48b325;
+}
+a:hover{
+	border-bottom: 1px solid #ed123e;
+	text-decoration: none!important;
+	color: #ed123e;
 }
 /* End Page Styling */
