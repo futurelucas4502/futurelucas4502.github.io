@@ -226,4 +226,7 @@ a:hover{
 	text-decoration: none!important;
 	color: #ed123e;
 }
+.main-content ul, .main-content ol {
+	margin-left:20px
+}
 /* End Page Styling */
