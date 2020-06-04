@@ -78,7 +78,9 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 <br><br>
 13. Next set all the info from line 7 to 25 to what you want it as
 <br><br>
-14. Save and commit your changes and your done!
+14. Open style.scss and index.css in /assets/css and default.html in _layouts make any changes you like to the theme
+<br><br>
+15. Save and commit your changes and your done!
 
 **Note**: It may take up to 20 minutes for the site to appear live after following these steps.
 
