@@ -76,7 +76,7 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 <br><br>
 12. Now delete lines 29 to 58 in index.html and copy the html tags the site generates to the index.html file
 <br><br>
-13. Next set all the info from line 7 to 47 in index.html and line 16 to 38 in _layouts/default.html to what you want it as (it sounds like a lot but theres a line space between each line to make it easier to read so its actually not very much)
+13. Next set all the info from line 7 to 49 in index.html and line 16 to 40 in _layouts/default.html to what you want it as (it sounds like a lot but theres a line space between each line to make it easier to read so its actually not very much)
 <br><br>
 14. Open style.scss and index.css in /assets/css and default.html in _layouts make any changes you like to the theme
 <br><br>
