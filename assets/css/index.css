@@ -218,6 +218,7 @@ nav{
 /* Start Page Styling */
 a{
 	border-bottom: 1px solid #8d8df3;
-	text-decoration: none;
+	text-decoration: none!important;
+	color: #8d8df3;
 }
 /* End Page Styling */
