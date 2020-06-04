@@ -2,10 +2,13 @@
 ---
 
 // Headers
-$header-bg-color: #5161ce;
-$header-bg-color-secondary: #a043e8;
+$header-bg-color: #fc00ff;
+$header-bg-color-secondary: #00dbde;
 
 // Text
 $section-headings-color: #5161ce;
+
+// Link
+$body-link-color: #00dbde;
 
 @import "{{ site.theme }}";
