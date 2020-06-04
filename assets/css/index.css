@@ -185,6 +185,7 @@ nav{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap !important;
+	border-bottom: none!important;
 	display: block;
 	min-width: 1px;
 	margin-right:0px;

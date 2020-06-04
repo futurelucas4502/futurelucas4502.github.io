@@ -274,7 +274,7 @@ async function indexReady() {
         <div class="row" id="cards"></div>
       </div>
   </div>
-  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is maintained by ${full_name} (${owner}).</h6>
+  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned andmaintained by ${full_name} (<a href="https://github.com/${owner}">${owner}</a>)</h6>
 </div>`
   for (let i = 0; i < indexResponse.length; i++) {
     var name = indexResponse[i]["name"].replace(/_/g, ' ');
