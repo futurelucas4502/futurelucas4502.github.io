@@ -218,5 +218,6 @@ nav{
 /* Start Page Styling */
 a{
 	border-bottom: 1px solid #8d8df3;
+	text-decoration: none;
 }
 /* End Page Styling */
