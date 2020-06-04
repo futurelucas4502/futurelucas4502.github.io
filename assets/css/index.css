@@ -223,9 +223,9 @@ a{
 	color: #48b325;
 }
 a:hover{
-	border-bottom: 1px solid #ed123e;
+	border-bottom: 1px solid #e4516e;
 	text-decoration: none!important;
-	color: #ed123e;
+	color: #e4516e;
 }
 .main-content ul, .main-content ol {
 	margin-left:20px
