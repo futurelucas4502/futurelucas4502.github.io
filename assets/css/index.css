@@ -214,6 +214,17 @@ nav{
 	background-repeat: no-repeat;
 }
 
+.card-text-bottom-fix{
+	margin-bottom: 162px;
+}
+
+.card-button-bottom-fix{
+    bottom: 0;
+    position: absolute;
+    width: calc(100% - 40px);
+}
+
+
 /* End Card Styling */
 
 /* Start Page Styling */

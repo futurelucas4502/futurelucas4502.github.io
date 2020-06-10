@@ -285,8 +285,8 @@ async function indexReady() {
         <img style="height:180px" id="${indexResponse[i]["name"]}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${name}</h5>
-          <p class="card-text">${indexResponse[i]["description"]}</p>
-          <div class="vertical">
+          <p class="card-text card-text-bottom-fix">${indexResponse[i]["description"]}</p>
+          <div class="vertical card-button-bottom-fix">
             <a style="display: block!important;" href="index.html?page=${indexResponse[i]["name"]}" class="viewBtn btn btn-primary">View</a>
             <a style="display: block!important;" href="${indexResponse[i]["html_url"]}" class="btn btn-dark"><i class="fab fa-github"></i> View on GitHub</a>
             <a style="display: block!important;" href="${site_url}/docs/index.html?docs=${indexResponse[i]["name"]}" class="btn btn-primary">View Documentation</a>
