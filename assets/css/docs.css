@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-top: env(safe-area-inset-top)!important;
+	padding-right: env(safe-area-inset-right)!important;
+	padding-bottom: env(safe-area-inset-bottom)!important;
+	padding-left: env(safe-area-inset-left)!important;
+}
+
+/* Start Page Styling */
+a{
+	border-bottom: 1px solid #48b325;
+	text-decoration: none!important;
+	color: #48b325;
+}
+a:hover{
+	border-bottom: 1px solid #e4516e;
+	text-decoration: none!important;
+	color: #e4516e;
+}
+.main-content ul, .main-content ol {
+	margin-left:20px
+}
+/* End Page Styling */
