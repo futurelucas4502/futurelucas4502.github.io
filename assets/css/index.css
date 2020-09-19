@@ -243,15 +243,18 @@ a:hover{
 }
 /* End Page Styling */
 
-@media (prefers-reduced-motion: reduce)
-.404-btn {
-    transition: none;
+@media (prefers-reduced-motion: reduce){
+    #404home {
+        transition: none;
+    }
 }
 
-.404-btn{
+#404home{
     display: inline-block;
     font-weight: 400;
     color: #212529;
+    color: #fff;
+    background-color: #007bff;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -259,8 +262,7 @@ a:hover{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
+    border: 1px solid #007bff;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -268,19 +270,9 @@ a:hover{
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.404-btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.404-btn-primary:hover {
+#404home:hover {
     color: #fff;
     background-color: #0069d9;
-    border-color: #0062cc;
-}
-
-.404-btn:hover {
-    color: #212529;
     text-decoration: none;
+    border-color: #0062cc;
 }
