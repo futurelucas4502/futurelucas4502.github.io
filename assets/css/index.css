@@ -244,12 +244,12 @@ a:hover{
 /* End Page Styling */
 
 @media (prefers-reduced-motion: reduce){
-    #404home {
+    #err-home {
         transition: none;
     }
 }
 
-#404home{
+#err-home {
     display: inline-block;
     font-weight: 400;
     color: #212529;
@@ -270,7 +270,7 @@ a:hover{
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-#404home:hover {
+#err-home:hover {
     color: #fff;
     background-color: #0069d9;
     text-decoration: none;
