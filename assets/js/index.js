@@ -160,7 +160,7 @@ $(document).ready(async function () {
     // The API call was successful!
     if (res.status == 404) {
       document.getElementById("err").style.display = "block"
-      document.getElementById("404home").href = site_url
+      document.getElementById("err-home").href = site_url
       $(".loader").fadeOut("slow")
       return
     }
@@ -200,7 +200,7 @@ $(document).ready(async function () {
       // The API call was successful!
       if (res.status == 404) {
         document.getElementById("err").style.display = "block"
-        document.getElementById("404home").href = site_url
+        document.getElementById("err-home").href = site_url
         $(".loader").fadeOut("slow")
         return
       }
@@ -328,7 +328,7 @@ async function otherReady(name) {
       await fetch(`https://raw.githubusercontent.com/${owner}/${name}/master/README.md`).then(res => {
         if (res.status == 404) {
           document.getElementById("err").style.display = "block"
-          document.getElementById("404home").href = site_url
+          document.getElementById("err-home").href = site_url
           $(".loader").fadeOut("slow")
           return
         }
