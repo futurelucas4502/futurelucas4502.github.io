@@ -304,6 +304,7 @@ async function indexReady() {
 // Start Other Pages Loading
 var otherResponse = Array()
 async function otherReady(name) {
+  document.getElementById("err").style.display = "none"
   if (document.location.href.includes("?page=") == false) {
     window.location.replace(`${site_url}`); // Load /docs = redirect to main page
   }
