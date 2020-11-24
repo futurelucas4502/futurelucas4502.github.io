@@ -94,7 +94,6 @@ $(function () {
 
     $(document).on("click", ".viewBtn", function (e) { // The code that executes when link pressed
       e.preventDefault(); // Cancel redirection to prevent page loading like normal
-      console.log("run")
       if (getComputedStyle(document.getElementById("toggler"), null).display != "none" && this.id != "navbarDropdown") {
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
