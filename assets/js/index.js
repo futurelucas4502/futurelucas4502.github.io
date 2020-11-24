@@ -16,10 +16,10 @@ if ("serviceWorker" in navigator) {
 // Installable popups end
 
 // Start Navigation
-var mobilehref
-var first = true
-var converter = new showdown.Converter();
-var closeNavMobile = window.matchMedia("(max-width: 991px)")
+let mobilehref
+let first = true
+let converter = new showdown.Converter();
+let closeNavMobile = window.matchMedia("(max-width: 991px)")
 closeNavMobile.addListener(closeNavMobileFunc) // Attach listener function on state changes
 
 function closeNavMobileFunc() {
@@ -44,12 +44,12 @@ function init(href) { // Initial animation of hori-selector
     }
     mobilehref = undefined
   }
-  var tabsNewAnim = $('#navbarSupportedContent');
-  var activeItemNewAnim = tabsNewAnim.find('.active');
-  var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-  var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-  var itemPosNewAnimTop = activeItemNewAnim.position();
-  var itemPosNewAnimLeft = activeItemNewAnim.position();
+  let tabsNewAnim = $('#navbarSupportedContent');
+  let activeItemNewAnim = tabsNewAnim.find('.active');
+  let activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+  let activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+  let itemPosNewAnimTop = activeItemNewAnim.position();
+  let itemPosNewAnimLeft = activeItemNewAnim.position();
   if (closeNavMobile.matches) { // Mobile view
     $(".hori-selector").css({
       "top": itemPosNewAnimTop.top + "px",
@@ -84,7 +84,7 @@ $(function () {
       }
       if ($(this).attr("href") == undefined || $(this).attr("href") == null || $(this).attr("href") == "") return
       try {
-        var _link = ($(this).attr("href")).trim();
+        let _link = ($(this).attr("href")).trim();
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
       } catch (e) {
@@ -99,7 +99,7 @@ $(function () {
         $('.navbar-collapse').collapse('hide'); // Closes nav toggler when a link is pressed in mobile view
       }
       try {
-        var _link = ($(this).attr("href")).trim();
+        let _link = ($(this).attr("href")).trim();
         history.pushState(null, null, _link); // Add link to browser history
         loadContent(_link); // Run custom load instead of redirect
       } catch (e) {
@@ -121,7 +121,7 @@ $(function () {
     };
 
     $(window).bind('popstate', function () { // Run on forward or back pressed
-      var _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
+      let _link = location.pathname.replace(/^.*[\\\/]/, '') // Get filename only of the history link
       if (location.href.split("?")[1] != undefined) _link += ("?" + location.href.split("?")[1]); // Adds the page request e.g. adds on ?page=management_console
       if (_link == "" || _link == "index") {
         _link = "index.html" // Adds support for going back to just site_URL
@@ -136,8 +136,8 @@ $(function () {
 });
 $(document).ready(function () { // Closes nav toggler if opened on mobile and you dont press on it
   $(document).click(function (event) {
-    var clickover = $(event.target);
-    var _opened = !$(".navbar-toggler").hasClass("collapsed");
+    let clickover = $(event.target);
+    let _opened = !$(".navbar-toggler").hasClass("collapsed");
     if (_opened === true && !clickover.parent().hasClass("navbar-toggler")) {
       document.getElementById("toggler").click()
     }
@@ -168,10 +168,10 @@ $(document).ready(async function () {
   }).then(function (html) {
 
     // Convert the HTML string into a document object
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(html, 'text/html');
+    let parser = new DOMParser();
+    let doc = parser.parseFromString(html, 'text/html');
     // Get the data
-    var link = document.createElement('link');
+    let link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${site_url}/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
     document.getElementsByTagName('head')[0].appendChild(link);
@@ -180,7 +180,7 @@ $(document).ready(async function () {
     document.body.innerHTML = "An error occured please check your internet connection and try again.<br><br>If it fails to load for after trying a few times with an internet connection the API may be down sorry for any inconvenience.<br><br><br>If the site hasnt started working again within an hour add a new issue <a href='https://github.com/futurelucas4502/futurelucas4502.github.io/issues'>here</a>"
     console.log(error)
   })
-  var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
   link.href = `https://github.com/${owner}.png`;
@@ -188,9 +188,9 @@ $(document).ready(async function () {
   document.getElementById("embelem").src = `https://github.com/${owner}.png`
   document.getElementById("owner").innerHTML = `${owner.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}'s Work`
   document.getElementById("owner").setAttribute('title', `${owner.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}'s Work`);
-  var fixedName1Var = fixedName1.replace(/_/g, ' ');
+  let fixedName1Var = fixedName1.replace(/_|-/g, ' ');
   fixedName1Var = fixedName1Var.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-  var fixedName2Var = fixedName2.replace(/_/g, ' ');
+  let fixedName2Var = fixedName2.replace(/_|-/g, ' ');
   fixedName2Var = fixedName2Var.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
   if (useAPI) {
     indexResponse = await fetch(`https://api.github.com/users/${owner}/repos`); // Using github API
@@ -207,8 +207,8 @@ $(document).ready(async function () {
       return res.text();
     }).then(function (html) {
       // Convert the HTML string into a document object
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(html, 'text/html');
+      let parser = new DOMParser();
+      let doc = parser.parseFromString(html, 'text/html');
       // Get the data
       for (let i = 0; i < doc.querySelectorAll("a[itemprop='name codeRepository']").length; i++) {
         let tempName = {
@@ -229,7 +229,7 @@ $(document).ready(async function () {
     otherReady(location.href.split("=")[1])
   }
   for (let i = 0; i < indexResponse.length; i++) { // Add links to dropdown
-    var name = indexResponse[i]["name"].replace(/_/g, ' ');
+    let name = indexResponse[i]["name"].replace(/_|-/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     if (name == fixedName1Var) {
       document.getElementById("fixedName1").innerHTML = `<i class="far ${fixedName1FA}"></i>${fixedName1Var}`
@@ -274,10 +274,10 @@ async function indexReady() {
         <div class="row" id="cards"></div>
       </div>
   </div>
-  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned andmaintained by ${full_name} (<a href="https://github.com/${owner}">${owner}</a>)</h6>
+  <h6 style="margin:20px 0px" class="text-muted">Disclaimer: All work shown here is owned or maintained by ${full_name} (<a href="https://github.com/${owner}">${owner}</a>)</h6>
 </div>`
   for (let i = 0; i < indexResponse.length; i++) {
-    var name = indexResponse[i]["name"].replace(/_/g, ' ');
+    let name = indexResponse[i]["name"].replace(/_|-/g, ' ');
     name = name.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
     document.getElementById("cards").innerHTML += `
     <div class="col-sm d-flex justify-content-center">
@@ -302,16 +302,16 @@ async function indexReady() {
 // End Basic Page Setup
 
 // Start Other Pages Loading
-var otherResponse = Array()
+let otherResponse = Array()
 async function otherReady(name) {
   document.getElementById("err").style.display = "none"
   if (document.location.href.includes("?page=") == false) {
     window.location.replace(`${site_url}`); // Load /docs = redirect to main page
   }
-  document.title = `${owner}'s Work | ${(name.replace(/_/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
-  var html
-  var htmlInner
-  var description
+  document.title = `${owner}'s Work | ${(name.replace(/_|-/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
+  let html
+  let htmlInner
+  let description
   await fetch(`${site_url}/docs/index.html`).then(res => {
     return res.text()
   }).then(data => {
@@ -349,8 +349,8 @@ async function otherReady(name) {
   }
   document.getElementsByClassName("project-name")[0].textContent = document.getElementsByTagName("h1")[1].innerText
   document.getElementsByClassName("project-tagline")[0].textContent = description
-  $('main').append(`<footer style="padding-left: 0px;" class="main-content site-footer">
-    <span class="site-footer-owner"><a href="https://github.com/${owner}/${name}">${name}</a> is maintained and made by <a href="https://github.com/${owner}">${owner}</a>.</span>
+  $('main').append(`<footer style="padding-left: 0px;display: inline-block;" class="main-content site-footer">
+    <span class="site-footer-owner"><a href="https://github.com/${owner}/${name}">${name}</a> is owned or maintained by <a href="https://github.com/${owner}">${owner}</a>.</span>
     <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> and <a href="https://github.com/futurelucas4502">futurelucas4502</a>.</span>
   </footer>`);
   document.getElementById("github-view").style.display = "inline-block"

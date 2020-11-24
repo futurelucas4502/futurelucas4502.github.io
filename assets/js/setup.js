@@ -13,42 +13,42 @@
 // Next you need to have a readme.md file as this is used to load the page content into
 // the site
 
-// Finally you must set the variables below to what you want them as:
+// Finally you must set the constiables below to what you want them as:
 
-var site_url = "https://futurelucas4502.github.io" // URL to index of your site
+const site_url = "https://futurelucas4502.github.io" // URL to index of your site
 
-var owner = "futurelucas4502" // Your github username
+const owner = "futurelucas4502" // Your github username
 
-var useAPI = false // Whether to use the official API or my personal code.
+const useAPI = false // Whether to use the official API or my personal code.
 
 // Note: The API has a rate limit of 60 requests an hour therefore its recommended to
 // have this set as false to use my custom code.
 
 // If the above is FALSE make sure you uncomment ONE of the links below:
-var cors = "https://api.allorigins.win/raw?url="
-// var cors = "https://cors-anywhere.herokuapp.com/"
-// var cors = "https://thingproxy.freeboard.io/fetch/"
-// var cors = "https://test.cors.workers.dev/"
-// var cors = "https://yacdn.org/proxy/"
+const cors = "https://api.allorigins.win/raw?url="
+// const cors = "https://cors-anywhere.herokuapp.com/"
+// const cors = "https://thingproxy.freeboard.io/fetch/"
+// const cors = "https://test.cors.workers.dev/"
+// const cors = "https://yacdn.org/proxy/"
 
 
-var fixedName1 = "management_console" // Set to the first tab you want to be visible
+const fixedName1 = "futurelucas4502" // Set to the first tab you want to be visible
 // outside the dropdown
 
-var fixedName2 = "management_console_mobile" // Set to the second tab you want to be visible
+const fixedName2 = "management_console_mobile" // Set to the second tab you want to be visible
 // outside the dropdown
-var fixedName1FA = "fa-address-book" // Font awesome icon to be used for the fixed name
+const fixedName1FA = "fa-user" // Font awesome icon to be used for the fixed name
 
-var fixedName2FA = "fa-address-book" // Font awesome icon to be used for the fixed name
+const fixedName2FA = "fa-address-book" // Font awesome icon to be used for the fixed name
 
-var full_name = "Lucas Wilson" // Your full name
+const full_name = "Lucas Wilson" // Your full name
 
-var repo_name = "futurelucas4502.github.io" // Name of the repo your website is stored in
+const repo_name = "futurelucas4502.github.io" // Name of the repo your website is stored in
 
-var docs = `
-# futurelucas4502.github.io - Documentation:
+const docs = `
+# Introduction:
 
-Welcome this is a little project I made mostly for myself but the idea is that anyone can take this and use it on their own github pages site.
+Welcome this is a "little" project I made mostly for myself but the idea is that anyone can take this and use it on their own github pages site.
 
 ## Setup:
 
@@ -56,7 +56,7 @@ Welcome this is a little project I made mostly for myself but the idea is that a
 <br><br>
 2. Then name the repo "your-username.github.io", add a description and click "Create repository from template"
 <br><br>
-3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 variables needed 
+3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 constiables needed 
 <br><br>
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
 <br><br>
