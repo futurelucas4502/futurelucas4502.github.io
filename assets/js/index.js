@@ -152,33 +152,12 @@ function navRightCut() {
 }
 
 // End Navigation
+
+
+
 // Start Basic Page Setup
 let indexResponse = new Array()
 $(document).ready(async function () {
-  await fetch(cors + `https://github.com/${owner}/${repo_name}/commit/master`).then(res => { // Not using github API
-    // The API call was successful!
-    if (res.status == 404) {
-      document.getElementById("err").style.display = "block"
-      document.getElementById("err-home").href = site_url
-      $(".loader").fadeOut("slow")
-      return
-    }
-    return res.text();
-  }).then(function (html) {
-
-    // Convert the HTML string into a document object
-    let parser = new DOMParser();
-    let doc = parser.parseFromString(html, 'text/html');
-    // Get the data
-    let link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `${site_url}/assets/css/style.css?v=${doc.getElementsByClassName("sha user-select-contain")[0].textContent}`;
-    document.getElementsByTagName('head')[0].appendChild(link);
-
-  }).catch(function (error) {
-    document.body.innerHTML = "An error occured please check your internet connection and try again.<br><br>If it fails to load for after trying a few times with an internet connection the API may be down sorry for any inconvenience.<br><br><br>If the site hasnt started working again within an hour add a new issue <a href='https://github.com/futurelucas4502/futurelucas4502.github.io/issues'>here</a>"
-    console.log(error)
-  })
   let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
@@ -302,19 +281,21 @@ async function indexReady() {
 
 // Start Other Pages Loading
 let otherResponse = Array()
-async function otherReady(name) {
+async function otherReady(name) { // this would be location.href.split("=")[1] so whatever is after equals s some page value?
   document.getElementById("err").style.display = "none"
   if (document.location.href.includes("?page=") == false) {
-    window.location.replace(`${site_url}`); // Load /docs = redirect to main page
+    window.location.replace(`${site_url}`); // Load something like ? or ?page or ?page= without any values just redirect to index
   }
   document.title = `${owner}'s Work | ${(name.replace(/_|-/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())}`
   let html
   let htmlInner
   let description
   await fetch(`${site_url}/docs/index.html`).then(res => {
+    // await fetch(`http://localhost/futurelucas4502.github.io/docs/index.html`).then(res => {
     return res.text()
   }).then(data => {
     html = data
+    console.log(html)
   });
   if (useAPI) {
     if (otherResponse[name] == undefined) { // Method using github API which has a rate limit of 60 requests an hour
@@ -342,6 +323,10 @@ async function otherReady(name) {
     htmlInner = converter.makeHtml(otherResponse[name]);
   }
   document.getElementById("main-content").innerHTML = html
+  let link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `./assets/css/style.css`;
+  document.getElementById("main-content").appendChild(link);
   document.getElementById("content").innerHTML = htmlInner
   for (let i = 0; i < indexResponse.length; i++) {
     if (indexResponse[i]["name"] == name) description = indexResponse[i]["description"]
