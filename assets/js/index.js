@@ -212,7 +212,7 @@ $(document).ready(async function () {
       for (let i = 0; i < doc.querySelectorAll("a[itemprop='name codeRepository']").length; i++) {
         let tempName = {
           "name": doc.querySelectorAll("a[itemprop='name codeRepository']")[i].innerText.replace(/\s+/g, ''),
-          "description": doc.querySelectorAll("p[itemprop='description']")[i].innerText,
+          "description": doc.querySelectorAll("p[itemprop='description']")[i] ? doc.querySelectorAll("p[itemprop='description']")[i].innerText : "No Description",
           "html_url": `https://github.com/${owner}/${(doc.querySelectorAll("a[itemprop='name codeRepository']")[i].innerText).replace(/\s+/g, '')}`
         }
         indexResponse.push(tempName)
