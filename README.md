@@ -22,3 +22,7 @@ IE is obviously not supported and never will as it doesnt support async.
 ## Note:
 
 When testing on localhost it may fail to load the buttons correctly but dont worry when you host it on github pages it will display them properly this is to do with how jekyll adds some styling tags and therefore something I cannot fix without adding a lot of code which isn't needed when it's online anyway
+
+## Credits:
+* piyushpd - for navbar layout design (https://codepen.io/piyushpd/pen/gOYvZPG)
+* github (pages-themes) - for the cayman style
