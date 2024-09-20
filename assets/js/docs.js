@@ -22,10 +22,10 @@ async function getData(ownerVar, nameVar) {
         // Convert the HTML string into a document object
         let parser = new DOMParser()
         let doc = parser.parseFromString(html, 'text/html')
-        let about = doc.querySelectorAll("p[class='f4 mt-3']") // grab the about info
+        let description = doc.querySelector("p.f4.my-3") ? doc.querySelector("p.f4.my-3").innerText : "No Description"
         // Get the data
         let tempName = {
-            "description": about[0].innerText
+            "description": description
         }
         otherResponse.push(tempName)
     }).catch(function (error) {
@@ -37,7 +37,7 @@ async function getData(ownerVar, nameVar) {
 $(document).ready(async function () {
     if (document.location.href.includes("?docs=") == false) {
         window.location.replace(`${site_url}`) // Load /docs = redirect to main page
-    } else if (document.location.href == `${site_url}/docs/index.html?docs=${repo_name}` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/testindex.html?docs=futurelucas4502.github.io") {
+    } else if (document.location.href == `${site_url}/docs/index.html?docs=${repo_name}` || document.location.href == "http://localhost/futurelucas4502.github.io/docs/index.html?docs=futurelucas4502.github.io") {
         // if loading the documentation for this website do the following
         document.getElementById("content").innerHTML = `<h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
               style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"

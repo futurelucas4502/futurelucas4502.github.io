@@ -302,7 +302,7 @@ async function otherReady(name) { // this would be location.href.split("=")[1] s
   let htmlInner
   let description
   await fetch(`${site_url}/docs/index.html`).then(res => {
-    // await fetch(`http://localhost/futurelucas4502.github.io/docs/index.html`).then(res => {
+  // await fetch(`http://localhost/futurelucas4502.github.io/docs/index.html`).then(res => {
     return res.text()
   }).then(data => {
     html = data
