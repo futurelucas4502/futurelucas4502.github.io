@@ -19,17 +19,13 @@ const site_url = "https://futurelucas4502.github.io" // URL to index of your sit
 
 const owner = "futurelucas4502" // Your github username
 
-const useAPI = false // Whether to use the official API or my personal code.
+const useAPI = true // Whether to use the official API or my personal code.
 
 // Note: The API has a rate limit of 60 requests an hour therefore its recommended to
 // have this set as false to use my custom code.
 
-// If the above is FALSE make sure you uncomment ONE of the links below:
-const cors = "https://api.allorigins.win/raw?url="
-// const cors = "https://cors-anywhere.herokuapp.com/"
-// const cors = "https://thingproxy.freeboard.io/fetch/"
-// const cors = "https://test.cors.workers.dev/"
-// const cors = "https://yacdn.org/proxy/"
+// If the above is FALSE the below is used
+const cors = "https://thingproxy.freeboard.io/fetch/"
 
 
 const fixedName1 = "futurelucas4502" // Set to the first tab you want to be visible
