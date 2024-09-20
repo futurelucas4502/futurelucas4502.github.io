@@ -1,4 +1,4 @@
-import { site_url, owner, useAPI, cors, repo_name, docs } from "./setup.js"
+import { site_url, owner, cors, repo_name, docs } from "./setup.js"
 let converter = new showdown.Converter() // Import Showdown a HTML to MD and back again 
 let otherResponse = Array()
 let html
@@ -42,12 +42,9 @@ $(document).ready(async function () {
         document.getElementById("content").innerHTML = `<h4 style="margin:20px 0px" class="text-muted" id="loading"><span class="spinner-border m-1"
               style="width: 1.25rem;height: 1.25rem;border-width: .2rem;" role="status"
               aria-hidden="true"></span>Loading...</h4>`
-        if (useAPI) {
-            otherResponse = await fetch(`https://api.github.com/repos/${owner}/${repo_name}`) // Using github API get the information need for the Docs page
-            otherResponse = await otherResponse.json()
-        } else {
-            await getData(owner, repo_name) // not using the github API and instead scraping my public repository page
-        }
+
+        await getData(owner, repo_name) // not using the github API and instead scraping my public repository page
+        
         let link = document.querySelector("link[rel*='icon']") || document.createElement('link')
         link.type = 'image/x-icon'
         link.rel = 'shortcut icon'
@@ -73,12 +70,9 @@ $(document).ready(async function () {
 // Start Other Pages Loading
 async function otherReady(name) {
     let nameFormatted = (name.replace(/_|-/g, ' ')).replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase())
-    if (useAPI) {
-        otherResponse = await fetch(`https://api.github.com/repos/${owner}/${name}`) // Using github API
-        otherResponse = await otherResponse.json()
-    } else {
-        await getData(owner, name)
-    }
+
+    await getData(owner, name)
+    
     // Method where I fetch the file contents of the readme manually
     let page = get("page")
     if (page == undefined) page = "index"

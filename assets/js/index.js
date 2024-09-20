@@ -1,4 +1,4 @@
-import { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name } from "./setup.js"
+import { site_url, owner, cors, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name } from "./setup.js"
 
 // Installable popups start
 
@@ -173,7 +173,6 @@ $(document).ready(async function () {
 
 
   // Quick and dirty way to calculate number of pages without using github API
-  let numberOfRepos = 0
   let countingRepos = true
   let page = 1
 
@@ -191,63 +190,28 @@ $(document).ready(async function () {
     }).then(function (repoPage) {
       // Convert the HTML string into a document object
       let parser = new DOMParser()
-      let repoPageHTML = parser.parseFromString(repoPage, 'text/html')
+      let doc = parser.parseFromString(repoPage, 'text/html')
       // Check if there is a next page button
-      if (repoPageHTML.querySelector("a.next_page") != null) { // If there is a next page then number of repos is 30 (30 per page) + next page total
-        numberOfRepos += 30
+      if (doc.querySelector("a.next_page") != null) { // If there is a next page then increase the total page count
+        page++
       }
       else {
-        // if not a next page then check how many repo links are on the page 
-        numberOfRepos += repoPageHTML.querySelectorAll("a[itemprop='name codeRepository']").length
+        // if not a next page then set to false to finish the while loop
         countingRepos = false
       }
-      page++
+      // Process the data and add it to indexResponse to create the repo cards
+      for (let j = 0; j < doc.querySelectorAll("a[itemprop='name codeRepository']").length; j++) {
+        let tempName = {
+          "name": doc.querySelectorAll("a[itemprop='name codeRepository']")[j].innerText.replace(/\s+/g, ''),
+          "description": doc.querySelectorAll("li[itemprop='owns']")[j].querySelector("p[itemprop='description']") ? doc.querySelectorAll("li[itemprop='owns']")[j].querySelector("p[itemprop='description']").innerText : "No Description",
+          "html_url": `https://github.com/${owner}/${(doc.querySelectorAll("a[itemprop='name codeRepository']")[j].innerText).replace(/\s+/g, '')}`
+        }
+        indexResponse.push(tempName)
+      }
     })
   }
 
-  let numPages = Math.trunc((numberOfRepos + 30 - 1) / 30)
 
-  if (useAPI) { // if using github API
-    for (let i = 0; i < numPages; i++) { // TODO: add 404 error handling etc like the other fetch requests
-      if (i == 0) {
-        indexResponse = await fetch(`https://api.github.com/users/${owner}/repos?page=${i + 1}`)
-        indexResponse = await indexResponse.json()
-      } else {
-        let temp = await fetch(`https://api.github.com/users/${owner}/repos?page=${i + 1}`)
-        temp = await temp.json()
-        indexResponse = indexResponse.concat(temp)
-      }
-    }
-  } else { // if not using github API
-    for (let i = 0; i < numPages; i++) {
-      await fetch(cors + `https://github.com/${owner}?tab=repositories&page=${i + 1}`).then(res => {
-        // The API call was successful!
-        if (res.status == 404) {
-          document.getElementById("err").style.display = "block"
-          document.getElementById("err-home").href = site_url
-          $(".loader").fadeOut("slow")
-          return
-        }
-        return res.text()
-      }).then(function (html) {
-        // Convert the HTML string into a document object
-        let parser = new DOMParser()
-        let doc = parser.parseFromString(html, 'text/html')
-        // Get the data
-        for (let j = 0; j < doc.querySelectorAll("a[itemprop='name codeRepository']").length; j++) {
-          let tempName = {
-            "name": doc.querySelectorAll("a[itemprop='name codeRepository']")[j].innerText.replace(/\s+/g, ''),
-            "description": doc.querySelectorAll("li[itemprop='owns']")[j].querySelector("p[itemprop='description']") ? doc.querySelectorAll("li[itemprop='owns']")[j].querySelector("p[itemprop='description']").innerText : "No Description",
-            "html_url": `https://github.com/${owner}/${(doc.querySelectorAll("a[itemprop='name codeRepository']")[j].innerText).replace(/\s+/g, '')}`
-          }
-          indexResponse.push(tempName)
-        }
-      }).catch(function (error) {
-        document.body.innerHTML = "An error occured please check your internet connection and try again.<br><br>If it fails to load for after trying a few times with an internet connection the API may be down sorry for any inconvenience.<br><br><br>If the site hasnt started working again within an hour add a new issue <a href='https://github.com/futurelucas4502/futurelucas4502.github.io/issues'>here</a>"
-        console.log(error)
-      })
-    }
-  }
   if (document.location.href == `${site_url}/index.html` || document.location.href == `${site_url}/index` || document.location.href == `${site_url}/` || document.location.href == "http://localhost/futurelucas4502.github.io/index.html" || document.location.href == "http://localhost/futurelucas4502.github.io/index" || document.location.href == "http://localhost/futurelucas4502.github.io/") {
     indexReady()
   } else {
@@ -338,7 +302,7 @@ async function otherReady(name) { // this would be location.href.split("=")[1] s
   let htmlInner
   let description
   await fetch(`${site_url}/docs/index.html`).then(res => {
-  // await fetch(`http://localhost/futurelucas4502.github.io/docs/index.html`).then(res => {
+    // await fetch(`http://localhost/futurelucas4502.github.io/docs/index.html`).then(res => {
     return res.text()
   }).then(data => {
     html = data

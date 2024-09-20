@@ -1,5 +1,4 @@
-// Hello and welcome to my project this website is a singlepage site that can use either
-// the github API or my personal code to display projects and all the info about them.
+// Hello and welcome to my project this website is a singlepage site that can uses code to display projects and all the info about them without accessing githubs API.
 // How to use:
 // First you need to have public github repositorys so that they can be loaded into the site
 
@@ -13,18 +12,15 @@
 // Next you need to have a readme.md file as this is used to load the page content into
 // the site
 
-// Finally you must set the constiables below to what you want them as:
+// Finally you must set the constants below to what you want them as:
 
 const site_url = "https://futurelucas4502.github.io" // URL to index of your site
 
 const owner = "futurelucas4502" // Your github username
 
-const useAPI = false // Whether to use the official API or my personal code.
+// Note: The github API has a rate limit of 60 requests an hour therefore this whole site functions without using the API yes its jank but it means the website can be visited more than 60 times which i think is better even if it is a little slower
 
-// Note: The API has a rate limit of 60 requests an hour therefore its recommended to
-// have this set as false to use my custom code.
-
-// If the above is FALSE make sure you uncomment the below originally there were many options here but each eventually stopped working till now only one remains
+// Originally there were many options here but each eventually stopped working till now only one remains if this one fails feel free to change this to another cors proxy
 const cors = "https://corsproxy.io/?"
 
 const fixedName1 = "futurelucas4502" // Set to the first tab you want to be visible
@@ -32,6 +28,7 @@ const fixedName1 = "futurelucas4502" // Set to the first tab you want to be visi
 
 const fixedName2 = "management_console_mobile" // Set to the second tab you want to be visible
 // outside the dropdown
+
 const fixedName1FA = "fa-user" // Font awesome icon to be used for the fixed name
 
 const fixedName2FA = "fa-address-book" // Font awesome icon to be used for the fixed name
@@ -51,7 +48,7 @@ Welcome this is a "little" project I made mostly for myself but the idea is that
 <br><br>
 2. Then name the repo "your-username.github.io", add a description and click "Create repository from template"
 <br><br>
-3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 constiables needed 
+3. Open the setup.js file in assets/js/ and go through the comments in the file to change the 11 constants needed 
 <br><br>
 4. If you want documentation to show up properly add a folder called docs in all your repositories with index.md and any other markdown files
 <br><br>
@@ -89,4 +86,4 @@ If you want to host your site at somewhere other than your-username.github.io yo
 // That's it now save and commit your changes and wait and the site will be built however this
 // can take up to 20 minutes as stated above
 
-export { site_url, owner, useAPI, cors, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name, docs }
+export { site_url, owner, cors, fixedName1, fixedName2, fixedName1FA, fixedName2FA, full_name, repo_name, docs }
