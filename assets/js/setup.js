@@ -19,7 +19,7 @@ const site_url = "https://futurelucas4502.github.io" // URL to index of your sit
 
 const owner = "futurelucas4502" // Your github username
 
-const useAPI = true // Whether to use the official API or my personal code.
+const useAPI = false // Whether to use the official API or my personal code.
 
 // Note: The API has a rate limit of 60 requests an hour therefore its recommended to
 // have this set as false to use my custom code.
