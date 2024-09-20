@@ -24,9 +24,8 @@ const useAPI = false // Whether to use the official API or my personal code.
 // Note: The API has a rate limit of 60 requests an hour therefore its recommended to
 // have this set as false to use my custom code.
 
-// If the above is FALSE the below is used
-const cors = "https://thingproxy.freeboard.io/fetch/"
-
+// If the above is FALSE make sure you uncomment the below originally there were many options here but each eventually stopped working till now only one remains
+const cors = "https://corsproxy.io/?"
 
 const fixedName1 = "futurelucas4502" // Set to the first tab you want to be visible
 // outside the dropdown
